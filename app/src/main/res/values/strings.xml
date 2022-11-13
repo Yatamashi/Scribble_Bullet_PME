@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PME Playground</string>
+    <string name="label_button_go_to_second_activity">Go to Second Activity</string>
+    <string name="text_hello_from_second_activity">Hello from Second Activity</string>
+    <string name="image_descr_robot_head">Robot Head</string>
+    <string name="image_descr_startup_icon">Startup Icon</string>
+    <string name="text_main_counter_value">Counter Value: %1$d</string>
+    <string name="label_button_inc">+</string>
+    <string name="label_button_dec">-</string>
+</resources>
