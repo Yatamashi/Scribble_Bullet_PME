@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -17,19 +19,17 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import de.fhe.pmeplayground.model.Beer;
-import de.fhe.pmeplayground.model.Contact;
+import de.fhe.pmeplayground.model.ToDo;
 
-@Database( entities = {Contact.class, Beer.class}, version = 1 )
-public abstract class ContactDatabase extends RoomDatabase {
+@Database( entities = {ToDo.class}, version = 1 )
+public abstract class ToDoDatabase extends RoomDatabase {
 
-    private static final String LOG_TAG = "ContactDB";
+    private static final String LOG_TAG = "ToDoDB";
 
     /*
-        Contact DAO reference, will be filled by Android
+        ToDo DAO reference, will be filled by Android
      */
-    public abstract ContactDao contactDao();
-    public abstract BeerDao beerDao();
+    public abstract ToDoDao toDoDao();
 
 
     /*
@@ -42,7 +42,7 @@ public abstract class ContactDatabase extends RoomDatabase {
     /*
         Singleton Instance
      */
-    private static volatile ContactDatabase INSTANCE;
+    private static volatile ToDoDatabase INSTANCE;
 
     /*
         Helper methods to ease external usage of ExecutorService
@@ -63,13 +63,13 @@ public abstract class ContactDatabase extends RoomDatabase {
         Singleton 'getInstance' method to create database instance thereby opening and, if not
         already done, init the database. Note the 'createCallback'.
      */
-    static ContactDatabase getDatabase(final Context context) {
+    static ToDoDatabase getDatabase(final Context context) {
         Log.i( LOG_TAG, "getDatabase() called" );
         if (INSTANCE == null) {
-            synchronized (ContactDatabase.class) {
+            synchronized (ToDoDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    ContactDatabase.class, "contact_db")
+                                    ToDoDatabase.class, "toDo_db")
                             .addCallback(createCallback) // See below
                             .build();
                 }
@@ -78,10 +78,11 @@ public abstract class ContactDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
+
     /*
-        Create DB Callback
-        Used to add some initial data
-     */
+    Create DB Callback
+    Used to add some initial data
+ */
     private static final RoomDatabase.Callback createCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -90,26 +91,29 @@ public abstract class ContactDatabase extends RoomDatabase {
             Log.i( LOG_TAG, "onCreate() called" );
 
             execute(() -> {
-                ContactDao dao = INSTANCE.contactDao();
+                ToDoDao dao = INSTANCE.toDoDao();
 
                 Faker faker = Faker.instance();
                 for (int i = 0; i < 10; i++)
                 {
-                    Contact contact = new Contact(faker.name().lastName(), faker.name().firstName());
-                    contact.setCreated( System.currentTimeMillis() );
-                    contact.setModified( contact.getCreated() );
-                    contact.setVersion( 1 );
-                    dao.insert(contact);
+                    ToDo toDo = new ToDo(faker.name().lastName(), faker.name().firstName(), faker.name().bloodGroup(), faker.hashCode());
+                    toDo.setCreated( System.currentTimeMillis() );
+                    toDo.setModified( toDo.getCreated() );
+                    toDo.setVersion( 1 );
+                    dao.insert(toDo);
                 }
-                Log.i(LOG_TAG, "Inserted 10 contacts to DB");
+                Log.i(LOG_TAG, "Inserted 10 toDos to DB");
+                
 
-                BeerDao beerDao = INSTANCE.beerDao();
-                for (int i = 0; i < 10; i++) {
-                    Beer beer = new Beer(faker.beer().name());
-                    beerDao.insert(beer);
-                }
-                Log.i(LOG_TAG, "Inserted 10 beers to DB");
             });
         }
     };
+
+    /*
+        Create DB Callback
+        Used to add some initial data
+     */
+
 }
+
+
