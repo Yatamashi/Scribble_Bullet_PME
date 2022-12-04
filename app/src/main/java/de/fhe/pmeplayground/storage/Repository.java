@@ -1,5 +1,6 @@
 package de.fhe.pmeplayground.storage;
 
+import android.app.Application;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -14,6 +15,22 @@ public class Repository {
     public static final String LOG_TAG = "ToDoRepository";
 
     private ToDoDao toDoDao;
+
+    private static Repository INSTANCE;
+
+    public static Repository getRepository( Application application )
+    {
+        if( INSTANCE == null ) {
+            synchronized ( Repository.class ) {
+                if( INSTANCE == null ) {
+                    INSTANCE = new Repository( application );
+                }
+            }
+        }
+
+        return INSTANCE;
+    }
+
 
     public Repository( Context context )  // was heist Context?
     {

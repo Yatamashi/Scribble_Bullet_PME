@@ -1,15 +1,16 @@
 package de.fhe.pmeplayground.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import de.fhe.pmeplayground.R;
-import de.fhe.pmeplayground.core.MyApplication;
-import de.fhe.pmeplayground.core.SettingsHandler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,24 +19,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button goToSecond = findViewById(R.id.button_go_to_second_activity);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_contact_list, R.id.navigation_input, R.id.navigation_settings,
+                R.id.navigation_settings, R.id.navigation_detail_view)
+                .build();
 
-        goToSecond.setOnClickListener( view -> {
-            Intent i = new Intent(this, SecondActivity.class);
-            startActivity(i);
-        });
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navView, navController);
+
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        MyApplication app = (MyApplication)getApplication();
-        SettingsHandler settingsHandler = app.getSettingsHandler();
-
-        TextView textView = findViewById(R.id.activity_main_textview);
-        String textViewValue = getString(R.string.text_main_counter_value,
-                settingsHandler.getCounterValue());
-        textView.setText(textViewValue);
-    }
 }
