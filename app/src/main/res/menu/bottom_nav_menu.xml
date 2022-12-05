@@ -6,8 +6,8 @@
         android:title="@string/title_todo_form" />
 
     <item
-        android:id="@+id/navigation_toDo_list"
-        android:icon="@drawable/icon_toDo_list"
+        android:id="@+id/navigation_todo_list"
+        android:icon="@drawable/icon_todo_list"
         android:title="@string/title_todo_list" />
 
     <item

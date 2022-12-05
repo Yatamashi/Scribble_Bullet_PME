@@ -12,8 +12,12 @@ import de.fhe.pmeplayground.model.ToDo;
 
 @Dao
 public interface ToDoDao {
+
     @Insert
-    void insert(ToDo... toDos);
+    long insert(ToDo... toDo);  //TODO was mach ich mit der Fehlermeldung?
+
+   // @Insert
+   // List<Long> insert(ToDo... toDos);  //TODO warum kann ich hier nicht 2 mal ToDo haben wie im beispiel exercise 5
 
     @Update
     void update(ToDo... toDos);

@@ -5,8 +5,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Date;
-
 @Entity
 public class ToDo {
 
@@ -36,13 +34,13 @@ public class ToDo {
 
     @NonNull
     @ColumnInfo(name = "deadline")
-    private long deadline;
+    private String deadline;
 
     @NonNull
     @ColumnInfo(name = "version")
     private int version = 0;
 
-    public ToDo(@NonNull String toDo, @NonNull String description, @NonNull String category, @NonNull long deadline) //Konstruktor für die Klasse
+    public ToDo(@NonNull String toDo, @NonNull String description, @NonNull String category, @NonNull String deadline) //Konstruktor für die Klasse
     {
         this.toDo = toDo;
         this.description = description;
@@ -112,11 +110,11 @@ public class ToDo {
         this.version = version;
     }
 
-    public long getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(long deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 

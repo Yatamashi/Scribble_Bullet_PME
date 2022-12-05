@@ -12,24 +12,30 @@ import androidx.annotation.NonNull;
 import com.google.android.material.snackbar.Snackbar;
 
 import de.fhe.pmeplayground.R;
-import de.fhe.pmeplayground.model.Contact;
+import de.fhe.pmeplayground.model.ToDo;
+import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.view.core.BaseFragment;
 
 public class InputFragment extends BaseFragment {
 
     private InputViewModel inputViewModel;
-    private EditText lastnameField;
-    private EditText firstnameField;
+    private EditText toDoField;
+    private EditText descriptionField;
+    private EditText deadlineField;
+    private EditText categoryField;
+
 
     private final View.OnClickListener saveButtonClickListener = v -> {
 
-        if( v.getId() == R.id.btn_save_contact)
+        if( v.getId() == R.id.btn_save_todo)
         {
-            Contact newContact = new Contact(
-                    lastnameField.getText().toString(),
-                    firstnameField.getText().toString() );
+            ToDo newToDo = new ToDo(
+                    toDoField.getText().toString(),
+                    descriptionField.getText().toString(),
+                    categoryField.getText().toString(),
+                    deadlineField.getText().toString());
 
-            String returnValue = inputViewModel.saveContact( newContact );
+            String returnValue = inputViewModel.saveToDo( newToDo );
 
             hideKeyboard( this.requireContext(), v );
             Snackbar.make(v, returnValue, Snackbar.LENGTH_SHORT).show();
@@ -43,10 +49,10 @@ public class InputFragment extends BaseFragment {
 
         View root = inflater.inflate(R.layout.fragment_input, container, false);
 
-        this.lastnameField = root.findViewById(R.id.et_lastname);
-        this.firstnameField = root.findViewById(R.id.et_firstname);
+        this.toDoField = root.findViewById(R.id.et_todo);
+        this.descriptionField = root.findViewById(R.id.et_description);
 
-        Button saveBtn = root.findViewById(R.id.btn_save_contact);
+        Button saveBtn = root.findViewById(R.id.btn_save_todo);
         saveBtn.setOnClickListener(this.saveButtonClickListener);
 
         return root;

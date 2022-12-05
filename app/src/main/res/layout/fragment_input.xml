@@ -7,7 +7,7 @@
     tools:context=".view.input.InputFragment">
 
     <EditText
-        android:id="@+id/et_lastname"
+        android:id="@+id/et_todo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -18,13 +18,13 @@
         android:hint="@string/text_todo"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_firstname"
+        app:layout_constraintBottom_toTopOf="@+id/et_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/et_firstname"
+        android:id="@+id/et_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -34,14 +34,14 @@
         android:ems="10"
         android:hint="@string/text_description"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save_contact"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save_todo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_lastname"
+        app:layout_constraintTop_toBottomOf="@+id/et_todo"
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/btn_save_contact"
+        android:id="@+id/btn_save_todo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -50,6 +50,6 @@
         android:text="@string/text_btn_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_firstname" />
+        app:layout_constraintTop_toBottomOf="@+id/et_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_contact_list"
-        android:name="de.fhe.pmeplayground.view.contactlist.ContactListFragment"
-        android:label="@string/title_contact_list"
-        tools:layout="@layout/fragment_contact_list" />
+        android:name="de.fhe.pmeplayground.view.toDolist.ToDoListFragment"
+        android:label="@string/title_todo_list"
+        tools:layout="@layout/fragment_todo_list" />
 
     <fragment
         android:id="@+id/navigation_input"
         android:name="de.fhe.pmeplayground.view.input.InputFragment"
-        android:label="@string/title_contact_form"
+        android:label="@string/title_todo_form"
         tools:layout="@layout/fragment_input" />
 
     <fragment

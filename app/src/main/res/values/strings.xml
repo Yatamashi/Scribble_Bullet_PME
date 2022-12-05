@@ -7,4 +7,12 @@
     <string name="text_main_counter_value">Counter Value: %1$d</string>
     <string name="label_button_inc">+</string>
     <string name="label_button_dec">-</string>
+    <string name="text_todo">ToDo</string>
+    <string name="text_description">Description</string>
+    <string name="text_btn_save">Save</string>
+    <string name="title_todo_form">Input</string>
+    <string name="title_todo_list">Todos</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_detail_view">Detail View</string>
+
 </resources>

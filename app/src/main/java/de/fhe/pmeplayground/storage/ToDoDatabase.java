@@ -22,12 +22,12 @@ import java.util.concurrent.Executors;
 import de.fhe.pmeplayground.model.ToDo;
 
 @Database( entities = {ToDo.class}, version = 1 )
-public abstract class ToDoDatabase extends RoomDatabase {
+public abstract class ToDoDatabase extends RoomDatabase {  //TODO was geht nicht mit Schema Export???
 
     private static final String LOG_TAG = "ToDoDB";
 
     /*
-        ToDo DAO reference, will be filled by Android
+         DAO reference, will be filled by Android
      */
     public abstract ToDoDao toDoDao();
 
@@ -57,6 +57,12 @@ public abstract class ToDoDatabase extends RoomDatabase {
     public static void execute( Runnable runnable )
     {
         databaseExecutor.execute( runnable );
+    }
+
+    public static <T> T executeWithReturn(Callable<T> task)
+        throws ExecutionException, InterruptedException
+    {
+        return databaseExecutor.invokeAny(Collections.singletonList(task));
     }
 
     /*
@@ -96,7 +102,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 Faker faker = Faker.instance();
                 for (int i = 0; i < 10; i++)
                 {
-                    ToDo toDo = new ToDo(faker.name().lastName(), faker.name().firstName(), faker.name().bloodGroup(), faker.hashCode());
+                    ToDo toDo = new ToDo(faker.name().lastName(), faker.name().firstName(), faker.name().bloodGroup(), faker.name().username());
                     toDo.setCreated( System.currentTimeMillis() );
                     toDo.setModified( toDo.getCreated() );
                     toDo.setVersion( 1 );

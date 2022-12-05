@@ -6,7 +6,6 @@ import android.util.Log;
 import java.util.List;
 import java.util.Random;
 
-import de.fhe.pmeplayground.model.Beer;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.storage.Repository;
 
