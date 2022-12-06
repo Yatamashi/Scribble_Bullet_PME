@@ -36,7 +36,7 @@ public class ToDoListFragment extends BaseFragment {
 
         for( ToDo c: toDoList ) {
             sb.append(c.getId()).append(": ")
-                    .append( c.getToDo()).append(" ")
+                    .append( c.getToDoTitle()).append(" ")
                     .append(c.getDescription()).append("\n");
         }
 

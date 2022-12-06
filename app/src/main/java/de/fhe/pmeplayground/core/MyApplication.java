@@ -53,7 +53,7 @@ public class MyApplication extends Application {
             Log.i(LOG_TAG, "" + lastToDo);
 
             // Change its toDo to something random
-            lastToDo.setToDo("ToDo " + new Random().nextInt(1000));
+            lastToDo.setToDoTitle("ToDo " + new Random().nextInt(1000));
             toDoRepository.update(lastToDo);
 
             // Wait for the async update operation to finish....

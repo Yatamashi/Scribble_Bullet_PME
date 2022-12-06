@@ -13,8 +13,8 @@ public class ToDo {
     private int id;
 
     @NonNull
-    @ColumnInfo(name = "toDo")
-    private String toDo;
+    @ColumnInfo(name = "toDoTitle")
+    private String toDoTitle;
 
     @NonNull
     @ColumnInfo(name = "description")
@@ -40,9 +40,9 @@ public class ToDo {
     @ColumnInfo(name = "version")
     private int version = 0;
 
-    public ToDo(@NonNull String toDo, @NonNull String description, @NonNull String category, @NonNull String deadline) //Konstruktor für die Klasse
+    public ToDo(@NonNull String toDoTitle, @NonNull String description, @NonNull String category, @NonNull String deadline) //Konstruktor für die Klasse
     {
-        this.toDo = toDo;
+        this.toDoTitle = toDoTitle;
         this.description = description;
         this.category = category;
         this.deadline = deadline;
@@ -58,7 +58,7 @@ public class ToDo {
 
     @NonNull
     public String getDescription() {
-        return toDo;
+        return toDoTitle;
     }
 
     public void setDescription(@NonNull String description) {
@@ -78,12 +78,12 @@ public class ToDo {
     }
 
     @NonNull
-    public String getToDo() {
-        return toDo;
+    public String getToDoTitle() {
+        return toDoTitle;
     }
 
-    public void setToDo(@NonNull String toDo) {
-        this.toDo = toDo;
+    public void setToDoTitle(@NonNull String toDoTitle) {
+        this.toDoTitle = toDoTitle;
     }
 
 
@@ -122,7 +122,7 @@ public class ToDo {
     @Override
     public String toString() {
         return new StringBuilder().append("{")
-                .append(toDo).append(" ").append(description)
+                .append(toDoTitle).append(" ").append(description)
                 .append("(").append(id).append(")")
                 .append( " v").append(version).append("}").toString();
     }

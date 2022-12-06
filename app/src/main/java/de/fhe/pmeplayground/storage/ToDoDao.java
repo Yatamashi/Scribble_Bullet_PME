@@ -14,10 +14,10 @@ import de.fhe.pmeplayground.model.ToDo;
 public interface ToDoDao {
 
     @Insert
-    long insert(ToDo... toDo);  //TODO was mach ich mit der Fehlermeldung?
+    long insert(ToDo toDo);  //TODO was mach ich mit der Fehlermeldung?
 
-   // @Insert
-   // List<Long> insert(ToDo... toDos);  //TODO warum kann ich hier nicht 2 mal ToDo haben wie im beispiel exercise 5
+    @Insert
+    List<Long> insert(ToDo... toDos);  //TODO warum kann ich hier nicht 2 mal ToDo haben wie im beispiel exercise 5
 
     @Update
     void update(ToDo... toDos);
@@ -34,12 +34,12 @@ public interface ToDoDao {
     @Query("SELECT * from ToDo")
     List<ToDo> getToDos();
 
-    @Query("SELECT * from ToDo ORDER BY toDo ASC")
+    @Query("SELECT * from ToDo ORDER BY toDoTitle ASC")
     List<ToDo> getToDosSortedByToDo();
 
     @Query("SELECT * from ToDo ORDER BY id DESC LIMIT 1")
     ToDo getLastEntry();
 
-    @Query("SELECT * FROM ToDo WHERE toDo LIKE :search")
+    @Query("SELECT * FROM ToDo WHERE toDoTitle LIKE :search")
     List<ToDo> getToDosForToDo(String search);
 }
