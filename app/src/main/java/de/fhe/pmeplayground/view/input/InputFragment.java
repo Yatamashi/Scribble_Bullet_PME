@@ -33,7 +33,8 @@ public class InputFragment extends BaseFragment {
                     toDoField.getText().toString(),
                     descriptionField.getText().toString(),
                     categoryField.getText().toString(),
-                    deadlineField.getText().toString());
+                    deadlineField.getText().toString()
+            );
 
             String returnValue = inputViewModel.saveToDo( newToDo );
 
@@ -41,6 +42,9 @@ public class InputFragment extends BaseFragment {
             Snackbar.make(v, returnValue, Snackbar.LENGTH_SHORT).show();
         }
     };
+
+    public InputFragment() {
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +55,8 @@ public class InputFragment extends BaseFragment {
 
         this.toDoField = root.findViewById(R.id.et_todo);
         this.descriptionField = root.findViewById(R.id.et_description);
+        this.categoryField = root.findViewById(R.id.et_category);
+        this.deadlineField = root.findViewById(R.id.et_deadline);
 
         Button saveBtn = root.findViewById(R.id.btn_save_todo);
         saveBtn.setOnClickListener(this.saveButtonClickListener);

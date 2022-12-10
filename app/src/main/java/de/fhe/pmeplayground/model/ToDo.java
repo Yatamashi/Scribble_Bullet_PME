@@ -46,6 +46,8 @@ public class ToDo {
         this.description = description;
         this.category = category;
         this.deadline = deadline;
+        this.created = ( System.currentTimeMillis() );
+        this.modified = ( System.currentTimeMillis() );
     }
 
     public int getId() {

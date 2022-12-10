@@ -21,7 +21,7 @@ public class MyApplication extends Application {
 
         this.settingsHandler = new SettingsHandler(this);
 
-        testDatabase();
+        //testDatabase();
 
         Log.i( LOG_TAG, "On Create finished.");
     }
@@ -29,7 +29,8 @@ public class MyApplication extends Application {
     /*
         Simple DB Test - will be removed in next version
      */
-    private void testDatabase() {
+
+   /* private void testDatabase() {
 
         // Create Repo instance - which in turn will init the ToDo DB
         Repository toDoRepository = new Repository( this );
@@ -76,4 +77,7 @@ public class MyApplication extends Application {
     public SettingsHandler getSettingsHandler() {
         return settingsHandler;
     }
+
+
+    */
 }
