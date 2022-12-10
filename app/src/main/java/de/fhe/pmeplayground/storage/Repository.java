@@ -3,7 +3,12 @@ package de.fhe.pmeplayground.storage;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -15,6 +20,8 @@ public class Repository {
     public static final String LOG_TAG = "ToDoRepository";
 
     private ToDoDao toDoDao;
+
+    LiveData<List<ToDo>> allToDos;
 
     private static Repository INSTANCE;
 
@@ -36,13 +43,14 @@ public class Repository {
     {
         ToDoDatabase db = ToDoDatabase.getDatabase( context );  //ToDo: Tododatabase rein
         this.toDoDao = db.toDoDao(); //ToDo database ändern
+        this.getToDosLiveData();
 
     }
 
 
     public List<ToDo> getToDos()
     {
-        return this.query( () -> this.toDoDao.getToDos() );
+        return this.query( this.toDoDao::getToDos );
     }
 
     // public List<ToDo> ge
@@ -52,10 +60,21 @@ public class Repository {
         return this.query( () -> this.toDoDao.getToDosForToDo( search ) );
     }
 
+    public LiveData<List<ToDo>> getToDosLiveData()
+    {
+        if( this.allToDos == null )
+            this.allToDos = this.queryLiveData(this.toDoDao::getToDosLiveData);
+
+        return this.allToDos;
+    }
+
+
     public List<ToDo> getToDosSortedByToDo()
     {
         return this.query( () -> this.toDoDao.getToDosSortedByToDo() );
     }
+
+
 
     private <T> List<T> query( Callable<List<T>> query )
     {
@@ -67,6 +86,20 @@ public class Repository {
         }
 
         return new ArrayList<>();
+    }
+
+
+    private LiveData<List<ToDo>> queryLiveData(Callable<LiveData<List<ToDo>>> query)
+    {
+        try {
+            return ToDoDatabase.executeWithReturn(query);
+        }
+        catch (ExecutionException | InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        return new MutableLiveData<>(Collections.emptyList());
     }
 
     public ToDo getLastToDo() {

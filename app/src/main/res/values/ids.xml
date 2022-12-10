@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="list_item_todo_done" type="id">done</item>
+    <item name="list_view_todos" type="id">listViewToDos</item>
+</resources>

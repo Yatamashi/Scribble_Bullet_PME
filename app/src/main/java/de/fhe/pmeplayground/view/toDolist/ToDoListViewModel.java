@@ -3,6 +3,7 @@ package de.fhe.pmeplayground.view.toDolist;
 import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ToDoListViewModel extends AndroidViewModel {
         this.repository = Repository.getRepository(application);
     }
 
-    public List<ToDo> getToDos() {
-        return this.repository.getToDos();
+    public LiveData<List<ToDo>> getToDos() {
+        return this.repository.getToDosLiveData();
     }
 }

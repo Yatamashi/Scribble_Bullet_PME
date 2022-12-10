@@ -74,10 +74,12 @@ public class MyApplication extends Application {
         }
     }
 
-    public SettingsHandler getSettingsHandler() {
-        return settingsHandler;
-    }
+
+*/
+   public SettingsHandler getSettingsHandler() {
+       return settingsHandler;
+   }
 
 
-    */
+
 }

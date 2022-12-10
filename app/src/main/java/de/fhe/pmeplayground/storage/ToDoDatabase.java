@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 import de.fhe.pmeplayground.model.ToDo;
 
 @Database( entities = {ToDo.class}, version = 1 )
-public abstract class ToDoDatabase extends RoomDatabase {  //TODO was geht nicht mit Schema Export???
+public abstract class ToDoDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = "ToDoDB";
 
