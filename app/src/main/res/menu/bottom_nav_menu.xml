@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_input"
+        android:icon="@drawable/icon_input_form"
+        android:title="@string/title_todo_form" />
+
+    <item
+        android:id="@+id/navigation_todo_list"
+        android:icon="@drawable/icon_todo_list"
+        android:title="@string/title_todo_list" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/icon_settings"
+        android:title="@string/title_settings" />
+
+    <item
+        android:id="@+id/navigation_detail_view"
+        android:icon="@drawable/icon_settings"
+        android:title="@string/title_detail_view" />
+</menu>

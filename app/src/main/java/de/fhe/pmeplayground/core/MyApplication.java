@@ -6,13 +6,12 @@ import android.util.Log;
 import java.util.List;
 import java.util.Random;
 
-import de.fhe.pmeplayground.model.Beer;
-import de.fhe.pmeplayground.model.Contact;
+import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.storage.Repository;
 
 public class MyApplication extends Application {
 
-    private static final String LOG_TAG = "MyApp";
+    private static final String LOG_TAG = "Scribble Bullet";
 
     private SettingsHandler settingsHandler;
 
@@ -22,7 +21,7 @@ public class MyApplication extends Application {
 
         this.settingsHandler = new SettingsHandler(this);
 
-        testDatabase();
+        //testDatabase();
 
         Log.i( LOG_TAG, "On Create finished.");
     }
@@ -30,37 +29,33 @@ public class MyApplication extends Application {
     /*
         Simple DB Test - will be removed in next version
      */
-    private void testDatabase() {
 
-        // Create Repo instance - which in turn will init the Contact DB
-        Repository contactRepository = new Repository( this );
+   /* private void testDatabase() {
 
-        // Query all beers
-        List<Beer> beers = contactRepository.getBeers();
-        Log.i(LOG_TAG, beers.toString() );
+        // Create Repo instance - which in turn will init the ToDo DB
+        Repository toDoRepository = new Repository( this );
+
+        // Query all toDos and log them
+        List<ToDo> allToDos = toDoRepository.getToDos();
+        Log.i(LOG_TAG, allToDos.toString() );
 
 
-
-        // Query all contacts and log them
-        List<Contact> allContacts = contactRepository.getContacts();
-        Log.i(LOG_TAG, allContacts.toString() );
-
-        // Do we have any contacts at all?
-        // During first app run, 10 contacts will be created. However, this happens asynchronous so
+        // Do we have any toDos at all?
+        // During first app run, 10 toDos will be created. However, this happens asynchronous so
         // we might end up here before the DB got filled. So, better check it.
-        if( allContacts.size() > 0 ) {
+        if( allToDos.size() > 0 ) {
 
-            // Ok, lets get all contacts sorted by lastname
-            allContacts = contactRepository.getContactsSortedByLastname();
-            Log.i(LOG_TAG, allContacts.toString() );
+            // Ok, lets get all toDos sorted by toDo
+            allToDos = toDoRepository.getToDosSortedByToDo();
+            Log.i(LOG_TAG, allToDos.toString() );
 
-            // Get the latest added contact, e.g. the one with the highest primary key value
-            Contact lastContact = contactRepository.getLastContact();
-            Log.i(LOG_TAG, "" + lastContact);
+            // Get the latest added toDo, e.g. the one with the highest primary key value
+            ToDo lastToDo = toDoRepository.getLastToDo();
+            Log.i(LOG_TAG, "" + lastToDo);
 
-            // Change its lastname to something random
-            lastContact.setLastname("Lastname " + new Random().nextInt(1000));
-            contactRepository.update(lastContact);
+            // Change its toDo to something random
+            lastToDo.setToDoTitle("ToDo " + new Random().nextInt(1000));
+            toDoRepository.update(lastToDo);
 
             // Wait for the async update operation to finish....
             try {
@@ -69,12 +64,12 @@ public class MyApplication extends Application {
                 e.printStackTrace();
             }
 
-            // Re-query the latest contact and check if the change was written successfully
-            lastContact = contactRepository.getLastContact();
-            Log.i(LOG_TAG, lastContact.toString());
+            // Re-query the latest toDo and check if the change was written successfully
+            lastToDo = toDoRepository.getLastToDo();
+            Log.i(LOG_TAG, lastToDo.toString());
 
-            // Get all contacts with lastname like 'Last*'
-            List<Contact> nameSearchResult = contactRepository.getContactsForLastname( "Last%" );
+            // Get all toDos with toDo like 'Last*'
+            List<ToDo> nameSearchResult = toDoRepository.getToDosForToDo( "Last%" );
             Log.i(LOG_TAG, nameSearchResult.toString() );
         }
     }
@@ -82,4 +77,7 @@ public class MyApplication extends Application {
     public SettingsHandler getSettingsHandler() {
         return settingsHandler;
     }
+
+
+    */
 }
