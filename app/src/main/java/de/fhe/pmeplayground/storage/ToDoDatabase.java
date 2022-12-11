@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 import de.fhe.pmeplayground.model.ToDo;
 
 @Database( entities = {ToDo.class}, version = 1 )
-public abstract class ToDoDatabase extends RoomDatabase {  //TODO was geht nicht mit Schema Export???
+public abstract class ToDoDatabase extends RoomDatabase {
 
     private static final String LOG_TAG = "ToDoDB";
 
@@ -99,17 +99,7 @@ public abstract class ToDoDatabase extends RoomDatabase {  //TODO was geht nicht
             execute(() -> {
                 ToDoDao dao = INSTANCE.toDoDao();
 
-               /* Faker faker = Faker.instance();
-                for (int i = 0; i < 10; i++)
-                {
-                    ToDo toDo = new ToDo(faker.name().lastName(), faker.name().firstName(), faker.name().bloodGroup(), faker.name().username());
-                    toDo.setCreated( System.currentTimeMillis() );
-                    toDo.setModified( toDo.getCreated() );
-                    toDo.setVersion( 1 );
-                    dao.insert(toDo);
-                }
-                Log.i(LOG_TAG, "Inserted 10 toDos to DB");
-                */
+
                 ToDo toDo = new ToDo("Abwasch", "mit Seife", "Wichtig", "20230401");
                 toDo.setCreated( System.currentTimeMillis() );
                 toDo.setModified( toDo.getCreated() );
@@ -164,15 +154,35 @@ public abstract class ToDoDatabase extends RoomDatabase {  //TODO was geht nicht
                 toDo8.setVersion( 1 );
                 dao.insert(toDo8);
 
+                ToDo toDo9 = new ToDo("Einkaufsliste erstellen", "Lebensmittel und Haushaltsartikel", "bis spätestens morgen Abend", "20230402");
+                toDo9.setCreated( System.currentTimeMillis() );
+                toDo9.setModified( toDo9.getCreated() );
+                toDo9.setVersion( 1 );
+                dao.insert(toDo9);
+
+                ToDo toDo10 = new ToDo("Autoreifen wechseln", "Vorder- und Hinterreifen", "bis zum nächsten Werktag", "20230403");
+                toDo10.setCreated( System.currentTimeMillis() );
+                toDo10.setModified( toDo10.getCreated() );
+                toDo10.setVersion( 1 );
+                dao.insert(toDo10);
+
+                ToDo toDo11 = new ToDo("Krankenversicherung prüfen", "Beiträge und Leistungen", "bis zum Ende des Jahres", "20230404");
+                toDo11.setCreated( System.currentTimeMillis() );
+                toDo11.setModified( toDo11.getCreated() );
+                toDo11.setVersion( 1 );
+                dao.insert(toDo11);
+
+                ToDo toDo12 = new ToDo("Hausaufgaben machen", "Mathe und Deutsch", "bis zum nächsten Schultag", "20230405");
+                toDo12.setCreated( System.currentTimeMillis() );
+                toDo12.setModified( toDo12.getCreated() );
+                toDo12.setVersion( 1 );
+                dao.insert(toDo12);
+
 
             });
         }
     };
 
-    /*
-        Create DB Callback
-        Used to add some initial data
-     */
 
 }
 
