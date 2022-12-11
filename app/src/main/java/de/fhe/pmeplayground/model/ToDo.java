@@ -16,6 +16,10 @@ public class ToDo {
     @ColumnInfo(name = "toDoTitle")
     private String toDoTitle;
 
+
+    @ColumnInfo(name = "toDoDone")
+    private boolean toDoDone;
+
     @NonNull
     @ColumnInfo(name = "description")
     private String description;
@@ -48,6 +52,7 @@ public class ToDo {
         this.deadline = deadline;
         this.created = ( System.currentTimeMillis() );
         this.modified = ( System.currentTimeMillis() );
+       // this.toDoDone = false;
     }
 
     public int getId() {
@@ -120,6 +125,14 @@ public class ToDo {
         this.deadline = deadline;
     }
 
+    public boolean isToDoDone() {
+        return toDoDone;
+    }
+
+    public void setToDoDone(boolean toDoDone)
+    {
+        this.toDoDone = toDoDone;
+    }
 
     @Override
     public String toString() {

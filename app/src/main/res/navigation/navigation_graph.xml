@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/navigation_detail_view"
-        android:name="de.fhe.pmeplayground.view.detailview.DetailView"
+        android:name="de.fhe.pmeplayground.view.settings.detailview.DetailView"
         android:label="@string/title_detail_view"
         tools:layout="@layout/fragment_detail_view" />
 

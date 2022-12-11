@@ -23,13 +23,13 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     static class ToDoViewHolder extends RecyclerView.ViewHolder
     {
         private final TextView toDoTitle;
-       // private final CheckBox done;
+      //  private final CheckBox toDoDone;
 
         private ToDoViewHolder(View itemView)
         {
             super(itemView);
             this.toDoTitle = itemView.findViewById(R.id.list_item_todo_title);
-           // this.done = itemView.findViewById(R.id.list_item_todo_done);
+           // this.toDoDone = itemView.findViewById(R.id.list_item_todo_done);
         }
     }
 
@@ -58,6 +58,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
 
         ToDo current = this.toDoList.get(position);
         holder.toDoTitle.setText(String.format("%s", current.getToDoTitle()));
+       // holder.toDoDone.setChecked(false);
 
         }
         else

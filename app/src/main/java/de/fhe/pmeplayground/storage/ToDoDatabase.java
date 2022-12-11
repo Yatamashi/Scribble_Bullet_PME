@@ -104,15 +104,18 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo.setCreated( System.currentTimeMillis() );
                 toDo.setModified( toDo.getCreated() );
                 toDo.setVersion( 1 );
+                toDo.setToDoDone(false);
                 dao.insert(toDo);
+
 
                 ToDo toDo1 = new ToDo("Putzen", "das Haus", "bis morgen", "20230401");
                 toDo1.setCreated( System.currentTimeMillis() );
                 toDo1.setModified( toDo1.getCreated() );
                 toDo1.setVersion( 1 );
+                toDo1.setToDoDone(false);
                 dao.insert(toDo1);
 
-                ToDo toDo2 = new ToDo("Einkaufen", "Milch und Brot", "heute Nachmittag", "20230401");
+            /*    ToDo toDo2 = new ToDo("Einkaufen", "Milch und Brot", "heute Nachmittag", "20230401");
                 toDo2.setCreated( System.currentTimeMillis() );
                 toDo2.setModified( toDo2.getCreated() );
                 toDo2.setVersion( 1 );
@@ -178,7 +181,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo12.setVersion( 1 );
                 dao.insert(toDo12);
 
-
+*/
             });
         }
     };

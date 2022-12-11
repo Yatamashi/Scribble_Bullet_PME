@@ -1,4 +1,4 @@
-package de.fhe.pmeplayground.view.detailview;
+package de.fhe.pmeplayground.view.settings.detailview;
 
 import androidx.lifecycle.ViewModel;
 
