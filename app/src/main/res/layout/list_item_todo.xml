@@ -12,15 +12,11 @@
         android:layout_width="332dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:gravity="center"
-        android:padding="5dp"
+        android:gravity="start"
+        android:padding="20dp"
         android:textSize="22sp"
         tools:text="@tools:sample/full_names" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="5" />
+
 
 </LinearLayout>

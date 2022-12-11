@@ -41,8 +41,8 @@ public class Repository {
 
     public Repository( Context context )  // was heist Context?
     {
-        ToDoDatabase db = ToDoDatabase.getDatabase( context );  //ToDo: Tododatabase rein
-        this.toDoDao = db.toDoDao(); //ToDo database ändern
+        ToDoDatabase db = ToDoDatabase.getDatabase( context );
+        this.toDoDao = db.toDoDao();
         this.getToDosLiveData();
 
     }
@@ -53,7 +53,7 @@ public class Repository {
         return this.query( this.toDoDao::getToDos );
     }
 
-    // public List<ToDo> ge
+
 
     public List<ToDo> getToDosForToDo(String search )
     {
