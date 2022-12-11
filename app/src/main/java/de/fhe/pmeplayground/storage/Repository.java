@@ -131,7 +131,7 @@ public class Repository {
     public long insertAndWait (ToDo toDo)
     {
         try {
-            return ToDoDatabase.executeWithReturn( () -> toDoDao.insert( this.prepareToDoForWriting(toDo))); // TODO: warum geht das nicht?
+            return ToDoDatabase.executeWithReturn( () -> toDoDao.insert( this.prepareToDoForWriting(toDo)));
         }
         catch (ExecutionException | InterruptedException e)
         {

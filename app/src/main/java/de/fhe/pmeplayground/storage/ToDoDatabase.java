@@ -99,17 +99,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
             execute(() -> {
                 ToDoDao dao = INSTANCE.toDoDao();
 
-               /* Faker faker = Faker.instance();
-                for (int i = 0; i < 10; i++)
-                {
-                    ToDo toDo = new ToDo(faker.name().lastName(), faker.name().firstName(), faker.name().bloodGroup(), faker.name().username());
-                    toDo.setCreated( System.currentTimeMillis() );
-                    toDo.setModified( toDo.getCreated() );
-                    toDo.setVersion( 1 );
-                    dao.insert(toDo);
-                }
-                Log.i(LOG_TAG, "Inserted 10 toDos to DB");
-                */
+
                 ToDo toDo = new ToDo("Abwasch", "mit Seife", "Wichtig", "20230401");
                 toDo.setCreated( System.currentTimeMillis() );
                 toDo.setModified( toDo.getCreated() );
@@ -193,10 +183,6 @@ public abstract class ToDoDatabase extends RoomDatabase {
         }
     };
 
-    /*
-        Create DB Callback
-        Used to add some initial data
-     */
 
 }
 

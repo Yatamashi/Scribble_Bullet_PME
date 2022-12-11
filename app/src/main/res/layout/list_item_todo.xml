@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
+<!--
     <TextView
         android:id="@+id/list_item_todo_title"
         android:layout_width="332dp"
@@ -16,7 +16,16 @@
         android:padding="20dp"
         android:textSize="22sp"
         tools:text="@tools:sample/full_names" />
+-->
 
+    <CheckBox
+        android:id="@+id/list_item_todo_title"
+        android:layout_width="332dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:padding="20dp"
+        android:textSize="22sp"
+        android:text="@tools:sample/full_names" />
 
 
 </LinearLayout>
