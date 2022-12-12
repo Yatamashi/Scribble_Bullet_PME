@@ -9,13 +9,12 @@ import androidx.room.PrimaryKey;
 public class ToDo {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private int id;
+    @ColumnInfo(name = "toDoId")
+    private int toDoId;
 
     @NonNull
     @ColumnInfo(name = "toDoTitle")
     private String toDoTitle;
-
 
     @ColumnInfo(name = "toDoDone")
     private boolean toDoDone;
@@ -55,12 +54,12 @@ public class ToDo {
        // this.toDoDone = false;
     }
 
-    public int getId() {
-        return id;
+    public int getToDoId() {
+        return toDoId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setToDoId(int toDoId) {
+        this.toDoId = toDoId;
     }
 
     @NonNull
@@ -138,7 +137,7 @@ public class ToDo {
     public String toString() {
         return new StringBuilder().append("{")
                 .append(toDoTitle).append(" ").append(description)
-                .append("(").append(id).append(")")
+                .append("(").append(toDoId).append(")")
                 .append( " v").append(version).append("}").toString();
     }
 }

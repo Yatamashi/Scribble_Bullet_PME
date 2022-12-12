@@ -74,7 +74,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         {
 
         ToDo current = this.toDoList.get(position);
-        holder.currentToDoId = current.getId();
+        holder.currentToDoId = current.getToDoId();
         holder.toDoTitle.setText(String.format("%s", current.getToDoTitle()));
        // holder.toDoDone.setChecked(false);
 

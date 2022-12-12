@@ -36,14 +36,20 @@ public interface ToDoDao {
     List<ToDo> getToDos();
 
     @Query("SELECT * FROM ToDo")
-    LiveData<List<ToDo>> getToDosLiveData();
+    LiveData<List<ToDo>> getToDosLiveDataList();
+
+    @Query("SELECT * FROM ToDo")
+    LiveData<ToDo> getToDosLiveDataNotList();
 
     @Query("SELECT * from ToDo ORDER BY toDoTitle ASC")
     List<ToDo> getToDosSortedByToDo();
 
-    @Query("SELECT * from ToDo ORDER BY id DESC LIMIT 1")
+    @Query("SELECT * from ToDo ORDER BY toDoId DESC LIMIT 1")
     ToDo getLastEntry();
 
     @Query("SELECT * FROM ToDo WHERE toDoTitle LIKE :search")
     List<ToDo> getToDosForToDo(String search);
+
+    @Query("SELECT * FROM ToDo WHERE toDoId = :toDoId")
+    LiveData<ToDo> getToDoById(long toDoId);
 }
