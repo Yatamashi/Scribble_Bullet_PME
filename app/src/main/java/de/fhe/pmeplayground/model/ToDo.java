@@ -5,6 +5,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+/**
+ * class for ToDos with parameters, setters getters, generates tables
+ */
 @Entity
 public class ToDo {
 

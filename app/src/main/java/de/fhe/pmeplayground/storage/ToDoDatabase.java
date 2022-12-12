@@ -21,6 +21,10 @@ import java.util.concurrent.Executors;
 
 import de.fhe.pmeplayground.model.ToDo;
 
+/**
+ * Database for the application.
+ * Also contains some Testdata
+ */
 @Database( entities = {ToDo.class}, version = 1 )
 public abstract class ToDoDatabase extends RoomDatabase {
 
@@ -88,7 +92,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
     /*
     Create DB Callback
     Used to add some initial data
- */
+    */
     private static final RoomDatabase.Callback createCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
@@ -115,7 +119,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo1.setToDoDone(false);
                 dao.insert(toDo1);
 
-            /*    ToDo toDo2 = new ToDo("Einkaufen", "Milch und Brot", "heute Nachmittag", "20230401");
+                ToDo toDo2 = new ToDo("Einkaufen", "Milch und Brot", "heute Nachmittag", "20230401");
                 toDo2.setCreated( System.currentTimeMillis() );
                 toDo2.setModified( toDo2.getCreated() );
                 toDo2.setVersion( 1 );
@@ -181,7 +185,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo12.setVersion( 1 );
                 dao.insert(toDo12);
 
-*/
+
             });
         }
     };

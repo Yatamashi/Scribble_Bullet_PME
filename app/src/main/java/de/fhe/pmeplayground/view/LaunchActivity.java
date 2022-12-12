@@ -14,6 +14,10 @@ import java.util.Random;
 
 import de.fhe.pmeplayground.R;
 
+/**
+ * is the first Activity
+ * has a progressbar
+ */
 public class LaunchActivity extends AppCompatActivity {
 
     @Override

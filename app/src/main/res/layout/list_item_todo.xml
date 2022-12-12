@@ -23,10 +23,11 @@
         android:layout_width="332dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:padding="20dp"
-        android:textSize="22sp"
+        android:checked="@+id/list_item_todo_done"
+        android:padding="18dp"
+        android:layout_marginLeft="10dp"
         android:text="@tools:sample/full_names"
-        android:checked="@+id/list_item_todo_done"/>
+        android:textSize="22sp" />
 
 
 </LinearLayout>
