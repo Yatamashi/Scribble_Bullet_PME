@@ -115,7 +115,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo1.setToDoDone(false);
                 dao.insert(toDo1);
 
-            /*    ToDo toDo2 = new ToDo("Einkaufen", "Milch und Brot", "heute Nachmittag", "20230401");
+                ToDo toDo2 = new ToDo("Einkaufen", "Milch und Brot", "heute Nachmittag", "20230401");
                 toDo2.setCreated( System.currentTimeMillis() );
                 toDo2.setModified( toDo2.getCreated() );
                 toDo2.setVersion( 1 );
@@ -181,7 +181,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo12.setVersion( 1 );
                 dao.insert(toDo12);
 
-*/
+
             });
         }
     };

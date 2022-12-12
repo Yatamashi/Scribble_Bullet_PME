@@ -33,7 +33,7 @@ public class ToDoListFragment extends BaseFragment {
             Bundle args = new Bundle();
             args.putLong("toDoId", toDoId);
             NavController nc = NavHostFragment.findNavController(this);
-            nc.navigate(R.id.action_navigation_todo_list_to_navigation_detail_view, args); //TODO: layout anpassen
+            nc.navigate(R.id.action_navigation_todo_list_to_navigation_detail_view, args);
         }
         );
 
