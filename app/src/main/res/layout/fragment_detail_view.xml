@@ -34,7 +34,7 @@
         android:id="@+id/fragment_detail_view_todo_category"
         android:layout_width="383dp"
         android:layout_height="41dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:background="#65AF5D5D"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.571"
