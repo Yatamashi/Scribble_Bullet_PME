@@ -6,27 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<!--
+
     <TextView
         android:id="@+id/list_item_todo_title"
-        android:layout_width="332dp"
+        android:layout_width="581dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
-        android:gravity="start"
+
         android:padding="20dp"
         android:textSize="22sp"
         tools:text="@tools:sample/full_names" />
--->
 
     <CheckBox
-        android:id="@+id/list_item_todo_title"
+        android:id="@+id/list_item_todo_done"
         android:layout_width="332dp"
         android:layout_height="match_parent"
         android:layout_weight="5"
+        android:checked="@+id/list_item_todo_done"
         android:padding="20dp"
-        android:textSize="22sp"
-        android:text="@tools:sample/full_names"
-        android:checked="@+id/list_item_todo_done"/>
+
+        android:textSize="22sp" />
 
 
 </LinearLayout>

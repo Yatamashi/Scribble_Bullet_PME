@@ -12,12 +12,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import de.fhe.pmeplayground.R;
 
-public class DetailView extends Fragment {
+public class DetailViewFragment extends Fragment {
 
     private DetailViewViewModel mViewModel;
 
-    public static DetailView newInstance() {
-        return new DetailView();
+    public static DetailViewFragment newInstance() {
+        return new DetailViewFragment();
     }
 
     @Override

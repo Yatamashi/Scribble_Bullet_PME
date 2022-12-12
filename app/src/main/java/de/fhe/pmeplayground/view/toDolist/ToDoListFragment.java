@@ -31,9 +31,9 @@ public class ToDoListFragment extends BaseFragment {
         // ergänzt für Clicklistener
         final ToDoListAdapter adapter = new ToDoListAdapter(this.requireActivity(), toDoId -> {
             Bundle args = new Bundle();
-            args.putLong(ARG_TODO_ID, toDoId);
+            args.putLong("toDoId", toDoId);
             NavController nc = NavHostFragment.findNavController(this);
-            nc.navigate(R.id.action_navigation_todo_list_to_todo_detail, args); //TODO: layout anpassen
+            nc.navigate(R.id.action_navigation_todo_list_to_navigation_detail_view, args); //TODO: layout anpassen
         }
         );
 

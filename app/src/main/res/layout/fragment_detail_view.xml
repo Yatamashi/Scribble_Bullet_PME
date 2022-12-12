@@ -4,16 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.settings.detailview.DetailView">
+    android:visibility="visible"
+    tools:context=".view.settings.detailview.DetailViewFragment"
+    tools:visibility="visible">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Hello"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/fragment_detail_view_todo_description"
+        android:layout_width="383dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        android:background="#65AF5D5D"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_detail_view_todo_deadline" />
+
+    <TextView
+        android:id="@+id/fragment_detail_view_todo_title"
+        android:layout_width="383dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        android:background="#65AF5D5D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_detail_view_todo_category" />
+
+    <TextView
+        android:id="@+id/fragment_detail_view_todo_category"
+        android:layout_width="383dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        android:background="#65AF5D5D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragment_detail_view_todo_deadline"
+        android:layout_width="383dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        android:background="#65AF5D5D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_detail_view_todo_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

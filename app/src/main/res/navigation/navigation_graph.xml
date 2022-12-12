@@ -9,7 +9,11 @@
         android:id="@+id/navigation_todo_list"
         android:name="de.fhe.pmeplayground.view.toDolist.ToDoListFragment"
         android:label="@string/title_todo_list"
-        tools:layout="@layout/fragment_todo_list" />
+        tools:layout="@layout/fragment_todo_list" >
+        <action
+            android:id="@+id/action_navigation_todo_list_to_navigation_detail_view"
+            app:destination="@id/navigation_detail_view" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_input"
@@ -24,7 +28,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/navigation_detail_view"
-        android:name="de.fhe.pmeplayground.view.settings.detailview.DetailView"
+        android:name="de.fhe.pmeplayground.view.settings.detailview.DetailViewFragment"
         android:label="@string/title_detail_view"
         tools:layout="@layout/fragment_detail_view" />
 
