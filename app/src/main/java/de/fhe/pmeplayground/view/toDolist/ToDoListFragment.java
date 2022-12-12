@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,8 +28,14 @@ public class ToDoListFragment extends BaseFragment {
 
         RecyclerView toDoListView = root.findViewById(R.id.list_view_todos);
 
-
-        final ToDoListAdapter adapter = new ToDoListAdapter(this.requireActivity());
+        // ergänzt für Clicklistener
+        final ToDoListAdapter adapter = new ToDoListAdapter(this.requireActivity(), toDoId -> {
+            Bundle args = new Bundle();
+            args.putLong("toDoId", toDoId);
+            NavController nc = NavHostFragment.findNavController(this);
+            nc.navigate(R.id.action_navigation_todo_list_to_navigation_detail_view, args);
+        }
+        );
 
         toDoListView.setAdapter(adapter);
         toDoListView.setLayoutManager(new LinearLayoutManager(this.requireActivity()));

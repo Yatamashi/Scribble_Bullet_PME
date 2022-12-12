@@ -63,10 +63,17 @@ public class Repository {
     public LiveData<List<ToDo>> getToDosLiveData()
     {
         if( this.allToDos == null )
-            this.allToDos = this.queryLiveData(this.toDoDao::getToDosLiveData);
+            this.allToDos = this.toDoDao.getToDosLiveDataList();  //TODO: Maybe Wrong
 
         return this.allToDos;
     }
+
+
+    public LiveData<ToDo> getToDoByIdAsLiveData(long toDoId)
+    {
+        return this.queryLiveData(() -> this.toDoDao.getToDoById(toDoId));
+    }
+
 
     public List<ToDo> getToDosSortedByToDo()
     {
@@ -85,7 +92,9 @@ public class Repository {
         return new ArrayList<>();
     }
 
-    private LiveData<List<ToDo>> queryLiveData(Callable<LiveData<List<ToDo>>> query)
+
+    private LiveData<ToDo> queryLiveData(Callable<LiveData<ToDo>> query)
+
     {
         try {
             return ToDoDatabase.executeWithReturn(query);
@@ -95,7 +104,7 @@ public class Repository {
             e.printStackTrace();
         }
 
-        return new MutableLiveData<>(Collections.emptyList());
+        return new MutableLiveData<>();
     }
 
     public ToDo getLastToDo() {
