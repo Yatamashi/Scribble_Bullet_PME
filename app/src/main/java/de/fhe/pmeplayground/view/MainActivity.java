@@ -12,6 +12,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import de.fhe.pmeplayground.R;
 
+/**
+ * Main Activity, everything important happens here
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -31,9 +34,5 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-
-
     }
-
 }

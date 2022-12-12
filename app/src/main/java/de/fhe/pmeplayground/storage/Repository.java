@@ -15,6 +15,9 @@ import java.util.concurrent.ExecutionException;
 
 import de.fhe.pmeplayground.model.ToDo;
 
+/**
+ * contains methods which return Data or you can insert or update data an change Data.
+ */
 public class Repository {
 
     public static final String LOG_TAG = "ToDoRepository";
@@ -65,6 +68,7 @@ public class Repository {
         return this.allToDos;
     }
 
+
     public LiveData<ToDo> getToDoByIdAsLiveData(long toDoId)
     {
         return this.queryLiveData(() -> this.toDoDao.getToDoById(toDoId));
@@ -75,8 +79,6 @@ public class Repository {
     {
         return this.query( () -> this.toDoDao.getToDosSortedByToDo() );
     }
-
-
 
     private <T> List<T> query( Callable<List<T>> query )
     {
@@ -92,6 +94,7 @@ public class Repository {
 
 
     private LiveData<ToDo> queryLiveData(Callable<LiveData<ToDo>> query)
+
     {
         try {
             return ToDoDatabase.executeWithReturn(query);

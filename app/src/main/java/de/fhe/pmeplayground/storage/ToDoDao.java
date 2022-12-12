@@ -11,6 +11,9 @@ import java.util.List;
 
 import de.fhe.pmeplayground.model.ToDo;
 
+/**
+ * interface to work on the Database with SQL statements
+ */
 @Dao
 public interface ToDoDao {
 

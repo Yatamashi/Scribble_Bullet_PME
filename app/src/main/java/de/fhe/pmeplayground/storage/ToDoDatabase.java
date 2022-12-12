@@ -21,6 +21,10 @@ import java.util.concurrent.Executors;
 
 import de.fhe.pmeplayground.model.ToDo;
 
+/**
+ * Database for the application.
+ * Also contains some Testdata
+ */
 @Database( entities = {ToDo.class}, version = 1 )
 public abstract class ToDoDatabase extends RoomDatabase {
 
@@ -88,7 +92,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
     /*
     Create DB Callback
     Used to add some initial data
- */
+    */
     private static final RoomDatabase.Callback createCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
