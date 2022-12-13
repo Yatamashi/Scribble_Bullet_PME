@@ -108,7 +108,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo.setCreated( System.currentTimeMillis() );
                 toDo.setModified( toDo.getCreated() );
                 toDo.setVersion( 1 );
-                toDo.setToDoDone(false);
+                toDo.setToDoDone(true);
                 dao.insert(toDo);
 
 

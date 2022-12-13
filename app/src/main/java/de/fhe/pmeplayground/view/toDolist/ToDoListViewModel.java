@@ -22,4 +22,11 @@ public class ToDoListViewModel extends AndroidViewModel {
     public LiveData<List<ToDo>> getToDos() {
         return this.repository.getToDosLiveData();
     }
+
+
+    //nutzt funktion aus repository zum ändern des Wertes
+    public void setToDoDone( long toDoId, boolean toDoDone)
+    {
+        repository.setToDoDone(toDoId, toDoDone);
+    }
 }

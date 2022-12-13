@@ -17,13 +17,20 @@ import de.fhe.pmeplayground.model.ToDo;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoViewHolder> {
 
-    // Klicken wird ausgewertet
-    public interface ToDoClickListener
+    // Klicken vom Titel wird ausgewertet
+    public interface ToDoTitleClickListener
     {
     void onClick(long toDoId);
     }
 
-    private final ToDoClickListener toDoClickListener;
+    public interface ToDoCheckBoxClickListener
+    {
+        void onClick(long toDoId, boolean checked);
+    }
+
+    private final ToDoTitleClickListener toDoTitleClickListener;
+
+    private final ToDoCheckBoxClickListener toDoCheckboxClickListener;
 
 
 
@@ -33,16 +40,19 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     static class ToDoViewHolder extends RecyclerView.ViewHolder
     {
         private final TextView toDoTitle;
-      //  private final CheckBox toDoDone;
+        private final CheckBox toDoDone;
 
         private long currentToDoId = -1;
-        private ToDoViewHolder(View itemView, ToDoClickListener toDoClickListener)
+        private ToDoViewHolder(View itemView, ToDoTitleClickListener toDoTitleClickListener, ToDoCheckBoxClickListener toDoCheckBoxClickListener)
         {
             super(itemView);
             this.toDoTitle = itemView.findViewById(R.id.list_item_todo_title);
-           // this.toDoDone = itemView.findViewById(R.id.list_item_todo_done);
-            itemView.setOnClickListener(v -> {
-                toDoClickListener.onClick( this.currentToDoId);
+            this.toDoDone = itemView.findViewById(R.id.list_item_todo_done);
+            toDoTitle.setOnClickListener(v -> {
+                toDoTitleClickListener.onClick( this.currentToDoId);
+            });
+            toDoDone.setOnClickListener(v -> {
+                toDoCheckBoxClickListener.onClick(this.currentToDoId, toDoDone.isChecked());
             });
 
         }
@@ -52,20 +62,24 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     private final LayoutInflater inflater;
     private List<ToDo> toDoList; //Cached copy of Todos
 
-    public ToDoListAdapter(Context context, ToDoClickListener toDoClickListener)
+    public ToDoListAdapter(Context context, ToDoTitleClickListener toDoTitleClickListener, ToDoCheckBoxClickListener toDoCheckBoxClickListener)
     {
         this.inflater = LayoutInflater.from(context);
-        this.toDoClickListener = toDoClickListener;
+        this.toDoTitleClickListener = toDoTitleClickListener;
+        this.toDoCheckboxClickListener = toDoCheckBoxClickListener;
     }
 
+    //gibt einen holder
     @NonNull
     @Override
     public ToDoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View itemView = this.inflater.inflate(R.layout.list_item_todo, parent, false);
-        return new ToDoViewHolder(itemView, this.toDoClickListener);
+        return new ToDoViewHolder(itemView, this.toDoTitleClickListener, this.toDoCheckboxClickListener);
+
     }
 
+    //Methode setzt vom holder die Parameter jenachdem was die Parameter in der Datenbank für einen Wert haben
     @Override
     public void onBindViewHolder(@NonNull ToDoViewHolder holder, int position)
     {
@@ -76,8 +90,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         ToDo current = this.toDoList.get(position);
         holder.currentToDoId = current.getToDoId();
         holder.toDoTitle.setText(String.format("%s", current.getToDoTitle()));
-       // holder.toDoDone.setChecked(false);
-
+        holder.toDoDone.setChecked(current.getToDoDone());
         }
         else
         {
@@ -103,8 +116,5 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         this.toDoList = toDoList;
         notifyDataSetChanged();
     }
-
-
-
 
 }

@@ -72,5 +72,7 @@ public class DetailViewFragment extends BaseFragment {
 
     }
 
+
+
 }
 
