@@ -54,7 +54,7 @@ public class ToDo {
         this.deadline = deadline;
         this.created = ( System.currentTimeMillis() );
         this.modified = ( System.currentTimeMillis() );
-       // this.toDoDone = false;
+        this.toDoDone = false;
     }
 
     public int getToDoId() {
@@ -127,7 +127,7 @@ public class ToDo {
         this.deadline = deadline;
     }
 
-    public boolean isToDoDone() {
+    public boolean getToDoDone() {
         return toDoDone;
     }
 

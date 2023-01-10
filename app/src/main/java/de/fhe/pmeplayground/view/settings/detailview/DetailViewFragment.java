@@ -29,8 +29,8 @@ public class DetailViewFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_detail_view, container, false); //TODO: was ist der Container, was bringt Attach to Root
-        viewModel = this.getViewModel(DetailViewViewModel.class); //TODO: Bitte die ganze Methode erklären
+        View root = inflater.inflate(R.layout.fragment_detail_view, container, false);
+        viewModel = this.getViewModel(DetailViewViewModel.class);
         this.hideBackButton();
         return root;
     }
@@ -39,18 +39,21 @@ public class DetailViewFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        assert getArguments() != null;
-        final long toDoId = getArguments().getLong("toDoId");
-        this.toDoLiveData = viewModel.getToDo(toDoId);
-        this.toDoLiveData.observe(requireActivity(), this::updateView);
-        Log.i("EventCallbacks", "Observing Detail ToDo");
+        if(getArguments() != null)
+        {
 
+            final long toDoId = getArguments().getLong("toDoId");
+            this.toDoLiveData = viewModel.getToDo(toDoId);
+            this.toDoLiveData.observe(requireActivity(), this::updateView);
+            Log.i("EventCallbacks", "Observing Detail ToDo");
+
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        this.toDoLiveData.removeObservers(requireActivity());  //TODO: Was bringt das?
+        this.toDoLiveData.removeObservers(requireActivity());
         Log.i("EventCallbacks", "Stopped observing Detail ToDo");
     }
 
@@ -63,7 +66,7 @@ public class DetailViewFragment extends BaseFragment {
         TextView toDoDescriptionView = getView().findViewById(R.id.fragment_detail_view_todo_description);
         TextView toDoCategoryView = getView().findViewById(R.id.fragment_detail_view_todo_category);
         TextView toDoDeadlineView = getView().findViewById(R.id.fragment_detail_view_todo_deadline);
-        //CheckBox toDoDoneView = getView().findViewById(R.id.fragment_detail_view_todo_done); //TODO: checkbox in detailview reinmachen
+
 
         toDoTitleView.setText(toDo.getToDoTitle());
         toDoDescriptionView.setText(toDo.getDescription());
@@ -71,6 +74,8 @@ public class DetailViewFragment extends BaseFragment {
         toDoDeadlineView.setText(toDo.getDeadline());
 
     }
+
+
 
 }
 

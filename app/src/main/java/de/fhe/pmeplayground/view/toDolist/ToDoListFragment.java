@@ -34,8 +34,14 @@ public class ToDoListFragment extends BaseFragment {
             args.putLong("toDoId", toDoId);
             NavController nc = NavHostFragment.findNavController(this);
             nc.navigate(R.id.action_navigation_todo_list_to_navigation_detail_view, args);
+        }, (toDoId, checked) -> {
+            toDoListViewModel.setToDoDone(toDoId, checked);
+
         }
         );
+
+
+
 
         toDoListView.setAdapter(adapter);
         toDoListView.setLayoutManager(new LinearLayoutManager(this.requireActivity()));

@@ -55,4 +55,11 @@ public interface ToDoDao {
 
     @Query("SELECT * FROM ToDo WHERE toDoId = :toDoId")
     LiveData<ToDo> getToDoById(long toDoId);
+
+  //  //to get the informatoin for the CheckBoxes TODO: Was ist hier falsch? Brauch ich das nicht?
+  //  @Query("SELECT toDoDone FROM ToDo WHERE toDoId = :toDoId")
+  //  LiveData<ToDo> getToDoDoneByIdLiveData(long toDoId);
+
+    @Query("UPDATE ToDo SET toDoDone = :toDoDone WHERE toDoId = :toDoId")
+    void setToDoDone(long toDoId, boolean toDoDone);
 }

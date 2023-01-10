@@ -63,7 +63,7 @@ public class Repository {
     public LiveData<List<ToDo>> getToDosLiveData()
     {
         if( this.allToDos == null )
-            this.allToDos = this.toDoDao.getToDosLiveDataList();  //TODO: Maybe Wrong
+            this.allToDos = this.toDoDao.getToDosLiveDataList();
 
         return this.allToDos;
     }
@@ -155,6 +155,15 @@ public class Repository {
 
         return toDo;
 
+    }
+
+
+    // Funktion die eine Funktion im Dao aufruft um set toDoId aufzurufen
+    public void setToDoDone(long toDoId, boolean toDoDone)
+    {
+        ToDoDatabase.execute( () -> this.toDoDao.setToDoDone(toDoId, toDoDone) );
+
+        ;
     }
 
 

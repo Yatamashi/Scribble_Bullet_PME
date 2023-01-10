@@ -16,7 +16,7 @@ public class DetailViewViewModel extends AndroidViewModel {
 
     public DetailViewViewModel(Application application)
     {
-        super(application); // Was bedeutet dieses Super?
+        super(application);
         this.repository = Repository.getRepository(application);
     }
 
