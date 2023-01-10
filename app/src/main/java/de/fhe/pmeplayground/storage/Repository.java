@@ -2,17 +2,12 @@ package de.fhe.pmeplayground.storage;
 
 import android.app.Application;
 import android.content.Context;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-
 import de.fhe.pmeplayground.model.ToDo;
 
 /**
@@ -154,16 +149,17 @@ public class Repository {
         toDo.setVersion(toDo.getVersion() + 1);
 
         return toDo;
-
     }
-
 
     // Funktion die eine Funktion im Dao aufruft um set toDoId aufzurufen
     public void setToDoDone(long toDoId, boolean toDoDone)
     {
         ToDoDatabase.execute( () -> this.toDoDao.setToDoDone(toDoId, toDoDone) );
+    }
 
-        ;
+    public List<String> getListOfCategories()
+    {
+        return this.toDoDao.getListOfCategories();
     }
 
 

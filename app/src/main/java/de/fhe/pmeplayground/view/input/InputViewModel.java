@@ -1,9 +1,8 @@
 package de.fhe.pmeplayground.view.input;
 
 import android.app.Application;
-
 import androidx.lifecycle.AndroidViewModel;
-
+import java.util.List;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.storage.Repository;
 
@@ -22,5 +21,11 @@ public class InputViewModel extends AndroidViewModel {
         long newToDoId = this.toDoRepository.insertAndWait( toDo );
         return "Contact saved - id: " + newToDoId;
     }
+
+    public List<String> getListOfCategories()
+    {
+        return this.toDoRepository.getListOfCategories();
+    }
+
 }
 

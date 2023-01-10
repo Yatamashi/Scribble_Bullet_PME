@@ -6,7 +6,6 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-
 import java.util.List;
 
 import de.fhe.pmeplayground.model.ToDo;
@@ -53,12 +52,11 @@ public interface ToDoDao {
     @Query("SELECT * FROM ToDo WHERE toDoTitle LIKE :search")
     List<ToDo> getToDosForToDo(String search);
 
+    @Query("SELECT distinct Category FROM ToDo")
+    List<String> getListOfCategories();
+
     @Query("SELECT * FROM ToDo WHERE toDoId = :toDoId")
     LiveData<ToDo> getToDoById(long toDoId);
-
-  //  //to get the informatoin for the CheckBoxes TODO: Was ist hier falsch? Brauch ich das nicht?
-  //  @Query("SELECT toDoDone FROM ToDo WHERE toDoId = :toDoId")
-  //  LiveData<ToDo> getToDoDoneByIdLiveData(long toDoId);
 
     @Query("UPDATE ToDo SET toDoDone = :toDoDone WHERE toDoId = :toDoId")
     void setToDoDone(long toDoId, boolean toDoDone);
