@@ -18,3 +18,6 @@ public class SettingsViewModel extends ViewModel {
     }
 }
 
+//TODO: sensors Viewmodel
+// TODO: preferences XML
+//SettingsFragment
