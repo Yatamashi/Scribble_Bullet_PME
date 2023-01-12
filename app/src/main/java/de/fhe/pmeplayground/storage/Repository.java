@@ -2,6 +2,8 @@ package de.fhe.pmeplayground.storage;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
@@ -159,7 +161,8 @@ public class Repository {
 
     public List<String> getListOfCategories()
     {
-        return this.toDoDao.getListOfCategories();
+        Log.i("EventCallbacks", "soll getListOfCategories in Repository aufrufen" );
+        return this.query( () -> this.toDoDao.getListOfCategories());
     }
 
 

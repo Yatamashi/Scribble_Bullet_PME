@@ -1,6 +1,8 @@
 package de.fhe.pmeplayground.view.input;
 
 import android.app.Application;
+import android.util.Log;
+
 import androidx.lifecycle.AndroidViewModel;
 import java.util.List;
 import de.fhe.pmeplayground.model.ToDo;
@@ -24,7 +26,9 @@ public class InputViewModel extends AndroidViewModel {
 
     public List<String> getListOfCategories()
     {
+        Log.i("EventCallbacks", "InputViewModel soll getListOfCategories aufrufen");
         return this.toDoRepository.getListOfCategories();
+
     }
 
 }

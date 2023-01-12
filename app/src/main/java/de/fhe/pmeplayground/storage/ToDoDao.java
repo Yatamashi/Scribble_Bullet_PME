@@ -1,5 +1,7 @@
 package de.fhe.pmeplayground.storage;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -52,7 +54,7 @@ public interface ToDoDao {
     @Query("SELECT * FROM ToDo WHERE toDoTitle LIKE :search")
     List<ToDo> getToDosForToDo(String search);
 
-    @Query("SELECT distinct Category FROM ToDo")
+    @Query("SELECT category FROM ToDo group by category")
     List<String> getListOfCategories();
 
     @Query("SELECT * FROM ToDo WHERE toDoId = :toDoId")
