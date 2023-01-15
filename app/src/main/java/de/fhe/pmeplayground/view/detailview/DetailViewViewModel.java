@@ -1,4 +1,4 @@
-package de.fhe.pmeplayground.view.settings.detailview;
+package de.fhe.pmeplayground.view.detailview;
 
 import android.app.Application;
 

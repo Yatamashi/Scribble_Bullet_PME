@@ -1,18 +1,15 @@
-package de.fhe.pmeplayground.view.settings.detailview;
+package de.fhe.pmeplayground.view.detailview;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
-    tools:context=".view.settings.detailview.DetailViewFragment"
+    tools:context=".view.detailview.DetailViewFragment"
     tools:visibility="visible">
 
     <TextView

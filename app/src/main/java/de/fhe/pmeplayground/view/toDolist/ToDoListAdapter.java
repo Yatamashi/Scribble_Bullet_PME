@@ -86,7 +86,6 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
 
         if( this.toDoList != null && !this.toDoList.isEmpty())
         {
-
         ToDo current = this.toDoList.get(position);
         holder.currentToDoId = current.getToDoId();
         holder.toDoTitle.setText(String.format("%s", current.getToDoTitle()));

@@ -16,6 +16,9 @@ import android.widget.Spinner;
 
 import java.util.List;
 import androidx.annotation.NonNull;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.google.android.material.snackbar.Snackbar;
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
@@ -34,7 +37,7 @@ public class InputFragment extends BaseFragment {
 
     private final View.OnClickListener saveButtonClickListener = v -> {
 
-        if( v.getId() == R.id.btn_save_todo)
+        if( v.getId() == R.id.btn_save_todo && !toDoField.getText().toString().equals(""))
         {
             ToDo newToDo = new ToDo(
                     toDoField.getText().toString(),
@@ -47,8 +50,20 @@ public class InputFragment extends BaseFragment {
 
             hideKeyboard( this.requireContext(), v );
             Snackbar.make(v, returnValue, Snackbar.LENGTH_SHORT).show();
+
+            //for navigating to list after new input
+            Bundle args = new Bundle();
+            NavController nc = NavHostFragment.findNavController(this);
+            nc.navigate(R.id.action_navigation_input_to_navigation_todo_list, args);
+
+        }
+        else
+        {
+            Snackbar.make(v, "Bitte ein ToDo eingeben", Snackbar.LENGTH_LONG).show();
         }
     };
+
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -67,7 +82,7 @@ public class InputFragment extends BaseFragment {
 
 //Alles zum Spinner
         Log.i( "EventCallbacks", "vor dem getList Aufruf.");
-        List<String> listOfCategories = inputViewModel.getListOfCategories();//; //"C", "C++", "Java"TODO: Fehler beim Datendurchschieben finden
+        List<String> listOfCategories = inputViewModel.getListOfCategories();
         Log.i( "EventCallbacks", "nach dem getList Aufruf.");
         Spinner categorySpinner = root.findViewById(R.id.category_spinner);
 
@@ -97,7 +112,11 @@ public class InputFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Log.i("EventCallbacks", "soll kalender visible machen ");
+
+
                 dpDeadline.setVisibility(View.VISIBLE);
+                hideKeyboard(getView().getContext(), v );
+
                 dpDeadline.init(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
                     @Override
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -116,6 +135,7 @@ public class InputFragment extends BaseFragment {
 
         Button saveBtn = root.findViewById(R.id.btn_save_todo);
         saveBtn.setOnClickListener(this.saveButtonClickListener);
+
 
         return root;
     }
