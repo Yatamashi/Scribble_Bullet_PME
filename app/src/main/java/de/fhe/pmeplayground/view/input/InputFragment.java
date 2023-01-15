@@ -103,10 +103,11 @@ public class InputFragment extends BaseFragment {
                     public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
-                        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
                         String date = format.format(calendar.getTime());
                         Log.i("EventCallbacks", "Angegebenes Datum: " + date);
                         deadlineField.setText(date);
+                        dpDeadline.setVisibility(View.GONE);
                     }
                 });
             }
