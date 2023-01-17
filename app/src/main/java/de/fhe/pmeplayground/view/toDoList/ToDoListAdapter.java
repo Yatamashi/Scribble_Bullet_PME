@@ -1,10 +1,13 @@
 package de.fhe.pmeplayground.view.toDoList;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,6 +59,8 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
                 toDoCheckBoxClickListener.onClick(this.currentToDoId, toDoDone.isChecked());
             });
 
+
+
         }
 
     }
@@ -77,6 +82,8 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     {
         View itemView = this.inflater.inflate(R.layout.list_item_todo, parent, false);
         return new ToDoViewHolder(itemView, this.toDoTitleClickListener, this.toDoCheckboxClickListener);
+
+
 
     }
 
@@ -112,19 +119,21 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         }
     }
 
-    public void setToDos(List<ToDo> toDoList){
+    @SuppressLint("NotifyDataSetChanged")
+    public void setToDos(List<ToDo> toDoList)
+    {
 
-       /* //für gefiltert nach category
-        String selectedCategory = itemView.findViewById(R.id.list_item_todo_title);
+        if(ToDoListFragment.selectedCategory == "alle ToDos")
+        {
+            this.toDoList = toDoList;
 
-        List<ToDo> allToDos = toDoList;
+        }
+        else
+        {
+            this.toDoList = toDoList.stream().filter(toDo -> toDo.getCategory().equals(ToDoListFragment.selectedCategory) ).collect(Collectors.toList());
+        }
 
-        this.toDoList = allToDos.stream()
-                .filter(entry -> entry.getCategory()=selectedCategory)
-                .collect(Collectors.toList());
 
-*/
-        this.toDoList = toDoList;
         notifyDataSetChanged();
     }
 

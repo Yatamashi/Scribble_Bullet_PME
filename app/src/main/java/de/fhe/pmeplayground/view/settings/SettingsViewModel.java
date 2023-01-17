@@ -17,7 +17,4 @@ public class SettingsViewModel extends ViewModel {
         return mText;
     }
 }
-
-//TODO: sensors Viewmodel
-// TODO: preferences XML
-//SettingsFragment
+//TODO: Settings rauslöschen

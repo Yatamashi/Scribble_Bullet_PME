@@ -12,10 +12,19 @@
         tools:layout="@layout/fragment_todo_list" >
         <action
             android:id="@+id/action_navigation_todo_list_to_navigation_detail_view"
-            app:destination="@id/navigation_detail_view" />
+            app:destination="@id/navigation_detail_view"
+            app:popUpTo="@id/navigation_todo_list"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_navigation_todo_list_to_navigation_input"
-            app:destination="@id/navigation_input" />
+            app:destination="@id/navigation_input"
+            app:popUpTo="@id/navigation_todo_list"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_navigation_todo_list_self"
+            app:destination="@id/navigation_todo_list"
+            app:popUpTo="@id/navigation_todo_list"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

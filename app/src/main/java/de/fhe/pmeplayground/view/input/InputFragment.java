@@ -64,8 +64,6 @@ public class InputFragment extends BaseFragment {
     };
 
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -83,6 +81,7 @@ public class InputFragment extends BaseFragment {
 //Alles zum Spinner
         Log.i( "EventCallbacks", "vor dem getList Aufruf.");
         List<String> listOfCategories = inputViewModel.getListOfCategories();
+        listOfCategories.add(0,"");
         Log.i( "EventCallbacks", "nach dem getList Aufruf.");
         Spinner categorySpinner = root.findViewById(R.id.category_spinner);
 
@@ -90,9 +89,15 @@ public class InputFragment extends BaseFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0)
+                {
+                    categoryField.setText("");
+                }
+
                 String selectedCategory = parent.getItemAtPosition(position).toString();
                 categoryField.setText(selectedCategory);
             }
@@ -100,6 +105,7 @@ public class InputFragment extends BaseFragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 categoryField.setText("");
+                Log.i("EventCallbacks", "called onNothingSelected");
             }
         });
 

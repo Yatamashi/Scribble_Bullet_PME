@@ -50,7 +50,10 @@ public class DetailViewFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
+        if(this.toDoLiveData != null)
+        {
         this.toDoLiveData.removeObservers(requireActivity());
+        }
         Log.i("EventCallbacks", "Stopped observing Detail ToDo");
     }
 
