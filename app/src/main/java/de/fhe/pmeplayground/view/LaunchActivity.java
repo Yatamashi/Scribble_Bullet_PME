@@ -30,7 +30,9 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+
         ProgressBar progressBar = findViewById(R.id.activity_launch_progress_bar);
+
         progressBar.setMax(100);
 
         MyHandler myHandler = new MyHandler(this, progressBar);

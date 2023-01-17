@@ -149,7 +149,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo6.setVersion( 1 );
                 dao.insert(toDo6);
 
-                ToDo toDo7 = new ToDo("Kleidung für die Arbeit aussuchen", "keine Jeans", "bis morgen früh", "20230401");
+                ToDo toDo7 = new ToDo("Kleidung für die Arbeit aussuchen", "keine Jeans", "Arbeit", "20230401");
                 toDo7.setCreated( System.currentTimeMillis() );
                 toDo7.setModified( toDo7.getCreated() );
                 toDo7.setVersion( 1 );
@@ -173,13 +173,13 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo10.setVersion( 1 );
                 dao.insert(toDo10);
 
-                ToDo toDo11 = new ToDo("Krankenversicherung prüfen", "Beiträge und Leistungen", "Termine", "20230404");
+                ToDo toDo11 = new ToDo("Krankenversicherung prüfen", "Beiträge und Leistungen", "Termine", "26.02.2023");
                 toDo11.setCreated( System.currentTimeMillis() );
                 toDo11.setModified( toDo11.getCreated() );
                 toDo11.setVersion( 1 );
                 dao.insert(toDo11);
 
-                ToDo toDo12 = new ToDo("Hausaufgaben machen", "Mathe und Deutsch", "Wichtig", "20230405");
+                ToDo toDo12 = new ToDo("Hausaufgaben machen", "Mathe und Deutsch", "Wichtig", "25.02.2023");
                 toDo12.setCreated( System.currentTimeMillis() );
                 toDo12.setModified( toDo12.getCreated() );
                 toDo12.setVersion( 1 );

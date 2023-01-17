@@ -21,7 +21,7 @@ public class InputViewModel extends AndroidViewModel {
     public String saveToDo( ToDo toDo )
     {
         long newToDoId = this.toDoRepository.insertAndWait( toDo );
-        return "Contact saved - id: " + newToDoId;
+        return "ToDo saved - id: " + newToDoId;
     }
 
     public List<String> getListOfCategories()

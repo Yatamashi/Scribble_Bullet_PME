@@ -1,4 +1,4 @@
-package de.fhe.pmeplayground.view.toDolist;
+package de.fhe.pmeplayground.view.toDoList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
@@ -112,6 +113,17 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     }
 
     public void setToDos(List<ToDo> toDoList){
+
+       /* //für gefiltert nach category
+        String selectedCategory = itemView.findViewById(R.id.list_item_todo_title);
+
+        List<ToDo> allToDos = toDoList;
+
+        this.toDoList = allToDos.stream()
+                .filter(entry -> entry.getCategory()=selectedCategory)
+                .collect(Collectors.toList());
+
+*/
         this.toDoList = toDoList;
         notifyDataSetChanged();
     }

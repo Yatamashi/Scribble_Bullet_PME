@@ -57,6 +57,11 @@ public class Repository {
         return this.query( () -> this.toDoDao.getToDosForToDo( search ) );
     }
 
+    public List<ToDo> getToDosForCategory(String search )
+    {
+        return this.query( () -> this.toDoDao.getToDosForCategory( search ) );
+    }
+
     public LiveData<List<ToDo>> getToDosLiveData()
     {
         if( this.allToDos == null )

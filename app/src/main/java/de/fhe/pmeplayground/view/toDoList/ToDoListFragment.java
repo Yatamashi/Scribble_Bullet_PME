@@ -1,9 +1,6 @@
-package de.fhe.pmeplayground.view.toDolist;
+package de.fhe.pmeplayground.view.toDoList;
 
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +11,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
 
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.view.core.BaseFragment;
@@ -43,7 +42,7 @@ public class ToDoListFragment extends BaseFragment {
         }
         );
 
-
+        List<String> listOfCategories = toDoListViewModel.getListOfCategories();
 
 
         toDoListView.setAdapter(adapter);

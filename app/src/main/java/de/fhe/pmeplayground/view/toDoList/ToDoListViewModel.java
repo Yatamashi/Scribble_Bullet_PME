@@ -1,4 +1,4 @@
-package de.fhe.pmeplayground.view.toDolist;
+package de.fhe.pmeplayground.view.toDoList;
 
 import android.app.Application;
 
@@ -28,5 +28,9 @@ public class ToDoListViewModel extends AndroidViewModel {
     public void setToDoDone( long toDoId, boolean toDoDone)
     {
         repository.setToDoDone(toDoId, toDoDone);
+    }
+
+    public List<String> getListOfCategories() {
+        return this.repository.getListOfCategories();
     }
 }

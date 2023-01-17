@@ -67,7 +67,7 @@ public class ToDo {
 
     @NonNull
     public String getDescription() {
-        return toDoTitle;
+        return description;
     }
 
     public void setDescription(@NonNull String description) {
