@@ -2,21 +2,19 @@ package de.fhe.pmeplayground.storage;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-
 import de.fhe.pmeplayground.model.ToDo;
 
 /**
  * contains methods which return Data or you can insert or update data an change Data.
+ * Uses ToDoDao to work on data
  */
 public class Repository {
 
@@ -60,6 +58,11 @@ public class Repository {
         return this.query( () -> this.toDoDao.getToDosForToDo( search ) );
     }
 
+    public List<ToDo> getToDosForCategory(String search )
+    {
+        return this.query( () -> this.toDoDao.getToDosForCategory( search ) );
+    }
+
     public LiveData<List<ToDo>> getToDosLiveData()
     {
         if( this.allToDos == null )
@@ -68,12 +71,10 @@ public class Repository {
         return this.allToDos;
     }
 
-
     public LiveData<ToDo> getToDoByIdAsLiveData(long toDoId)
     {
         return this.queryLiveData(() -> this.toDoDao.getToDoById(toDoId));
     }
-
 
     public List<ToDo> getToDosSortedByToDo()
     {
@@ -91,7 +92,6 @@ public class Repository {
 
         return new ArrayList<>();
     }
-
 
     private LiveData<ToDo> queryLiveData(Callable<LiveData<ToDo>> query)
 
@@ -145,6 +145,11 @@ public class Repository {
         return -1;
     }
 
+    /**
+     * automaticly sets modified an version from current time
+     * @param toDo
+     * @return toDo
+     */
     private ToDo prepareToDoForWriting(ToDo toDo)
     {
         if(toDo.getCreated() < 0)
@@ -154,16 +159,27 @@ public class Repository {
         toDo.setVersion(toDo.getVersion() + 1);
 
         return toDo;
-
     }
 
-
+    /**
+     * a setter calls funcion in Dao to call setToDoId
+     * @param toDoId
+     * @param toDoDone
+     */
     // Funktion die eine Funktion im Dao aufruft um set toDoId aufzurufen
     public void setToDoDone(long toDoId, boolean toDoDone)
     {
         ToDoDatabase.execute( () -> this.toDoDao.setToDoDone(toDoId, toDoDone) );
+    }
 
-        ;
+    /**
+     * gets a list of all different categories in database
+     * @return
+     */
+    public List<String> getListOfCategories()
+    {
+        Log.i("EventCallbacks", "getListOfCategories got called in repository" );
+        return this.query( () -> this.toDoDao.getListOfCategories());
     }
 
 

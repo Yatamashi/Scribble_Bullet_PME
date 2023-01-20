@@ -11,13 +11,13 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="50dp"
+        android:contentDescription="@string/image_descr_startup_icon"
         app:layout_constraintBottom_toTopOf="@+id/activity_launch_progress_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_agriculture"
-        app:tint="@color/teal_700"
-        android:contentDescription="@string/image_descr_startup_icon" />
+        app:srcCompat="@drawable/ic_baseline_checklist_rtl_24"
+        app:tint="@color/purple_200" />
 
     <ProgressBar
         android:id="@+id/activity_launch_progress_bar"
@@ -25,7 +25,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:max="100"
-        android:progressTint="@color/teal_700"
+        android:progressTint="@color/purple_700"
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

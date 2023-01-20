@@ -10,13 +10,9 @@
         android:icon="@drawable/icon_todo_list"
         android:title="@string/title_todo_list" />
 
-    <item
-        android:id="@+id/navigation_settings"
-        android:icon="@drawable/icon_settings"
-        android:title="@string/title_settings" />
 
     <item
         android:id="@+id/navigation_detail_view"
-        android:icon="@drawable/icon_settings"
+        android:icon="@drawable/icon_detail"
         android:title="@string/title_detail_view" />
 </menu>

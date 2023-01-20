@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.input.InputFragment">
+    android:layout_marginBottom="55dp"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    app:barrierMargin="@dimen/cardview_compat_inset_shadow"
+    tools:context=".view.input.InputFragment"
+    tools:visibility="visible">
+
 
     <EditText
         android:id="@+id/et_todo"
@@ -13,10 +25,11 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
-        android:ems="10"
         android:hint="@string/text_todo"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,60 +39,107 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
         android:hint="@string/text_description"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_category" />
+
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginTop="12dp"
+        android:spinnerMode="dialog"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/et_category"
+
+        app:layout_constraintTop_toBottomOf="@+id/et_todo"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/et_category"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="70dp"
         android:ems="10"
         android:hint="@string/text_category"
         android:importantForAutofill="no"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_todo" />
 
-    <EditText
-        android:id="@+id/et_deadline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+
+    <DatePicker
+        android:id="@+id/dp_deadline"
+        android:layout_width="match_parent"
+        android:layout_height="278dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:hint="@string/text_deadline"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_description" />
+        app:layout_constraintTop_toBottomOf="@+id/et_deadline" />
+
+    <Button
+        android:id="@+id/btn_select_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/select_deadline"
+        app:layout_constraintStart_toEndOf="@+id/et_deadline"
+        app:layout_constraintTop_toBottomOf="@+id/et_description"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/et_deadline"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/text_deadline"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_description"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/btn_save_todo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+
         android:layout_marginEnd="24dp"
         android:text="@string/text_btn_save"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_deadline" />
+        app:layout_constraintTop_toBottomOf="@+id/dp_deadline"
+        app:layout_constraintVertical_bias="0.924"
+        tools:ignore="TextContrastCheck" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
+</ScrollView>

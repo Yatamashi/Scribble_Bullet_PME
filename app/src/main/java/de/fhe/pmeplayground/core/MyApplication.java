@@ -2,7 +2,9 @@ package de.fhe.pmeplayground.core;
 import android.app.Application;
 import android.util.Log;
 
-
+/**
+ * class to execute on Create
+ */
 public class MyApplication extends Application {
 
     private static final String LOG_TAG = "Scribble Bullet";

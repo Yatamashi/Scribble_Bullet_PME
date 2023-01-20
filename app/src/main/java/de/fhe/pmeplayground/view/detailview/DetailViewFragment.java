@@ -1,25 +1,24 @@
-package de.fhe.pmeplayground.view.settings.detailview;
+package de.fhe.pmeplayground.view.detailview;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.view.core.BaseFragment;
 
+/**
+ * DetailViewFragment is for users to see details of a "dodo", he can see the title, category, description an deadline
+ */
 public class DetailViewFragment extends BaseFragment {
-
 
     private DetailViewViewModel viewModel;
     private LiveData<ToDo> toDoLiveData;
@@ -34,7 +33,6 @@ public class DetailViewFragment extends BaseFragment {
         this.hideBackButton();
         return root;
     }
-
 
     @Override
     public void onResume() {
@@ -53,7 +51,10 @@ public class DetailViewFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
+        if(this.toDoLiveData != null)
+        {
         this.toDoLiveData.removeObservers(requireActivity());
+        }
         Log.i("EventCallbacks", "Stopped observing Detail ToDo");
     }
 

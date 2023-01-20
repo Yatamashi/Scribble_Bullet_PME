@@ -3,6 +3,10 @@ package de.fhe.pmeplayground.core;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * sorry but I don't know what this class is doing
+ * maybe useful if i had actual settings in my application
+ */
 public class SettingsHandler {
 
     private static final String STORE_NAME = "my_store";

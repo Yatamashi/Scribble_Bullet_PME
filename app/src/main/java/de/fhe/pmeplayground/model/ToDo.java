@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * class for ToDos with parameters, setters getters, generates tables
+ * class for ToDos with parameters, setters getters, generates tables, contains toString method
  */
 @Entity
 public class ToDo {
@@ -67,7 +67,7 @@ public class ToDo {
 
     @NonNull
     public String getDescription() {
-        return toDoTitle;
+        return description;
     }
 
     public void setDescription(@NonNull String description) {

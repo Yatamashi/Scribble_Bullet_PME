@@ -31,6 +31,7 @@ public class LaunchActivity extends AppCompatActivity {
         super.onResume();
 
         ProgressBar progressBar = findViewById(R.id.activity_launch_progress_bar);
+
         progressBar.setMax(100);
 
         MyHandler myHandler = new MyHandler(this, progressBar);
@@ -67,9 +68,5 @@ public class LaunchActivity extends AppCompatActivity {
                 }
             }, 100 + progressCalculator.nextInt(200));
         }
-
-
     }
-
-
 }

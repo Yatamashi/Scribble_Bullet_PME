@@ -4,19 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.toDolist.ToDoListFragment">
+    android:layout_marginBottom="60dp"
+    tools:context=".view.toDoList.ToDoListFragment">
+
+
+    <Switch
+        android:id="@+id/done_todos_switch"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="erledigte ToDos ausblenden"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toEndOf="@+id/category_spinner"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <Spinner
+        android:id="@+id/category_spinner"
+        android:layout_width="186dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_view_todos"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
 
-
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_item_todo"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_spinner"
+        tools:listitem="@layout/list_item_todo" />
+
+    <Button
+        android:id="@+id/new_todo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_todo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_view_todos"
+        app:layout_constraintVertical_bias="0.833" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
