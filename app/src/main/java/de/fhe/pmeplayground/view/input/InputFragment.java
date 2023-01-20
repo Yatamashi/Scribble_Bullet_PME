@@ -24,6 +24,13 @@ import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.view.core.BaseFragment;
 
+/**
+ * InputFragment is for the user to create new "dodos"
+ * "dodo", caregory, description and deadline can be written in EditText fields, but category can be chosen in a dropdown menu where all categorys in database are listed,
+ * deadline can be choosen with a calender what pops up if you click select Deadline.
+ * New dataset is saved if you click on save button
+ * if there is no title it throws a small warning an does not save the dataset yet
+ */
 public class InputFragment extends BaseFragment {
 
     private InputViewModel inputViewModel;
@@ -32,8 +39,6 @@ public class InputFragment extends BaseFragment {
     private EditText deadlineField;
     private EditText categoryField;
     private DatePicker dpDeadline;
-    private Button btnSelectDeadline;
-
 
     private final View.OnClickListener saveButtonClickListener = v -> {
 
@@ -76,19 +81,23 @@ public class InputFragment extends BaseFragment {
         this.categoryField = root.findViewById(R.id.et_category);
         this.deadlineField = root.findViewById(R.id.et_deadline);
         this.dpDeadline = root.findViewById(R.id.dp_deadline);
-        this.btnSelectDeadline = root.findViewById(R.id.btn_select_deadline);
+        Button btnSelectDeadline = root.findViewById(R.id.btn_select_deadline);
 
-//Alles zum Spinner
-        Log.i( "EventCallbacks", "vor dem getList Aufruf.");
+        //  --everything for the spinner--  //
+        Log.i( "EventCallbacks", "before getListOfCategories is called in InputFragment");
         List<String> listOfCategories = inputViewModel.getListOfCategories();
-        listOfCategories.add(0,"");
-        Log.i( "EventCallbacks", "nach dem getList Aufruf.");
+        listOfCategories.add(0,""); // so that in the layout the defaultentry is no category
+        Log.i( "EventCallbacks", "after getListOfCategories is called in InputFragment");
         Spinner categorySpinner = root.findViewById(R.id.category_spinner);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, listOfCategories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
+
+        /*
+        sets the category textfield with the choosen category
+         */
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
@@ -109,17 +118,20 @@ public class InputFragment extends BaseFragment {
             }
         });
 
-        
-//Ende Spinner
-        //Kalender
-        Log.i("EventCallbacks", "soll kalender visible GONE machen ");
+
+        //  --everything for the calender--  //
+        Log.i("EventCallbacks", "calender disappears in InputFragment");
         dpDeadline.setVisibility(View.GONE);
-        btnSelectDeadline.setOnClickListener(new View.OnClickListener() {
+
+        /*
+        calender appears when clicked on selectDate and set the choosen date in EditText deadline
+         */
+        btnSelectDeadline.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                Log.i("EventCallbacks", "soll kalender visible machen ");
-
-
+            public void onClick(View v)
+            {
+                Log.i("EventCallbacks", "calender appears in InputFragment");
                 dpDeadline.setVisibility(View.VISIBLE);
                 hideKeyboard(getView().getContext(), v );
 
@@ -137,11 +149,9 @@ public class InputFragment extends BaseFragment {
                 });
             }
         });
-        //Kalender ende
 
         Button saveBtn = root.findViewById(R.id.btn_save_todo);
         saveBtn.setOnClickListener(this.saveButtonClickListener);
-
 
         return root;
     }

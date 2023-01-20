@@ -11,6 +11,9 @@ import com.github.javafaker.App;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.storage.Repository;
 
+/**
+ * Viewmodel separates the database from fragment
+ */
 public class DetailViewViewModel extends AndroidViewModel {
     private final Repository repository;
 

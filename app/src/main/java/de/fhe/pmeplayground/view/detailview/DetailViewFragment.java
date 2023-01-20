@@ -15,8 +15,10 @@ import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.view.core.BaseFragment;
 
+/**
+ * DetailViewFragment is for users to see details of a "dodo", he can see the title, category, description an deadline
+ */
 public class DetailViewFragment extends BaseFragment {
-
 
     private DetailViewViewModel viewModel;
     private LiveData<ToDo> toDoLiveData;
@@ -31,7 +33,6 @@ public class DetailViewFragment extends BaseFragment {
         this.hideBackButton();
         return root;
     }
-
 
     @Override
     public void onResume() {

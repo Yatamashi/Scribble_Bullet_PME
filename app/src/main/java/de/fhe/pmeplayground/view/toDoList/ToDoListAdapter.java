@@ -2,6 +2,7 @@ package de.fhe.pmeplayground.view.toDoList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import de.fhe.pmeplayground.R;
@@ -21,7 +23,7 @@ import de.fhe.pmeplayground.model.ToDo;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoViewHolder> {
 
-    // Klicken vom Titel wird ausgewertet
+    // click on title
     public interface ToDoTitleClickListener
     {
     void onClick(long toDoId);
@@ -33,14 +35,11 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     }
 
     private final ToDoTitleClickListener toDoTitleClickListener;
-
     private final ToDoCheckBoxClickListener toDoCheckboxClickListener;
 
+    static int counter = 0; //counter child instances
 
-
-    static int counter = 0; //counter für Kinder
-
-    //Definition vom Holder
+    //definition of holder
     static class ToDoViewHolder extends RecyclerView.ViewHolder
     {
         private final TextView toDoTitle;
@@ -58,11 +57,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
             toDoDone.setOnClickListener(v -> {
                 toDoCheckBoxClickListener.onClick(this.currentToDoId, toDoDone.isChecked());
             });
-
-
-
         }
-
     }
 
     private final LayoutInflater inflater;
@@ -75,19 +70,16 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         this.toDoCheckboxClickListener = toDoCheckBoxClickListener;
     }
 
-    //gibt einen holder
+    //gives holder
     @NonNull
     @Override
     public ToDoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
         View itemView = this.inflater.inflate(R.layout.list_item_todo, parent, false);
         return new ToDoViewHolder(itemView, this.toDoTitleClickListener, this.toDoCheckboxClickListener);
-
-
-
     }
 
-    //Methode setzt vom holder die Parameter jenachdem was die Parameter in der Datenbank für einen Wert haben
+    //method sets data from database into holder
     @Override
     public void onBindViewHolder(@NonNull ToDoViewHolder holder, int position)
     {
@@ -111,7 +103,6 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         if(this.toDoList != null&& !this.toDoList.isEmpty())
         {
             return this.toDoList.size();
-
         }
         else
         {
@@ -119,22 +110,33 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
         }
     }
 
+
+    /**
+     * filters the list at first for checked and not checked for checked state.
+     * Afterwars filters for category due to choosen category in ToDoListFragment
+     * @param toDoList list comes in an gets filtered
+     */
     @SuppressLint("NotifyDataSetChanged")
     public void setToDos(List<ToDo> toDoList)
     {
-
-        if(ToDoListFragment.selectedCategory == "alle ToDos")
+        List<ToDo> toDoListTemp = toDoList;
+        if(ToDoListFragment.switchState)
         {
-            this.toDoList = toDoList;
+            toDoListTemp = toDoList.stream().filter(toDo -> !toDo.getToDoDone()).collect(Collectors.toList());
+            Log.i("EventCallbacks", "List of not done todos: " + toDoList);
+        }
 
+        if(Objects.equals(ToDoListFragment.selectedCategory, "alle ToDos"))
+        {
+            this.toDoList = toDoListTemp;
         }
         else
         {
-            this.toDoList = toDoList.stream().filter(toDo -> toDo.getCategory().equals(ToDoListFragment.selectedCategory) ).collect(Collectors.toList());
+            this.toDoList = toDoListTemp.stream().filter(toDo -> toDo.getCategory().equals(ToDoListFragment.selectedCategory) ).collect(Collectors.toList());
         }
 
-
         notifyDataSetChanged();
+        toDoListTemp = toDoList;
     }
 
 }

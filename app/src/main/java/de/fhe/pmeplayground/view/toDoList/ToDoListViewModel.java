@@ -24,7 +24,7 @@ public class ToDoListViewModel extends AndroidViewModel {
     }
 
 
-    //nutzt funktion aus repository zum ändern des Wertes
+    //uses function in repository to change data
     public void setToDoDone( long toDoId, boolean toDoDone)
     {
         repository.setToDoDone(toDoId, toDoDone);

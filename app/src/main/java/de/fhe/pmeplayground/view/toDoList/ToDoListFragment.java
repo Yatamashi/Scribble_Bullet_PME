@@ -1,5 +1,6 @@
 package de.fhe.pmeplayground.view.toDoList;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 
@@ -26,12 +29,10 @@ import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.view.core.BaseFragment;
 
-public class ToDoListFragment extends BaseFragment {
-
-
+public class ToDoListFragment extends BaseFragment
+{
     public static String selectedCategory = "alle ToDos";
-
-
+    public static Boolean switchState = false;
 
     private final View.OnClickListener newTodoButtonClickListener = v -> {
 
@@ -41,39 +42,25 @@ public class ToDoListFragment extends BaseFragment {
             nc.navigate(R.id.action_navigation_todo_list_to_navigation_input, args);
     };
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-
-
-
-
-
 
         View root = inflater.inflate(R.layout.fragment_todo_list, container, false);
 
         ToDoListViewModel toDoListViewModel = this.getViewModel(ToDoListViewModel.class);
 
-
-
-
-
         RecyclerView toDoListView = root.findViewById(R.id.list_view_todos);
 
-        // ergänzt für Clicklistener
+        // new for clicklistener
         final ToDoListAdapter adapter = new ToDoListAdapter(this.requireActivity(), toDoId -> {
             Bundle args = new Bundle();
             args.putLong("toDoId", toDoId);
             NavController nc = NavHostFragment.findNavController(this);
             nc.navigate(R.id.action_navigation_todo_list_to_navigation_detail_view, args);
-        }, (toDoId, checked) -> {
-            toDoListViewModel.setToDoDone(toDoId, checked);
-
-        }
+        }, toDoListViewModel::setToDoDone
         );
 
-        //Alles zum Spinner
+        // --everything for the spinner  --//
         List<String> listOfCategories = toDoListViewModel.getListOfCategories();
         Spinner categorySpinner = root.findViewById(R.id.category_spinner);
         listOfCategories.add(0,"alle ToDos");
@@ -81,14 +68,13 @@ public class ToDoListFragment extends BaseFragment {
         toDoListAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(toDoListAdapter);
 
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-               String temp = selectedCategory;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
                 selectedCategory = parent.getItemAtPosition(position).toString();
-
-                   Log.i("EventCallbacks", "selected category in ToDoList: " + selectedCategory);
-
+                Log.i("EventCallbacks", "selected category in ToDoList: " + selectedCategory);
             }
 
             @Override
@@ -97,8 +83,16 @@ public class ToDoListFragment extends BaseFragment {
             }
         });
 
-        //für gefiltert nach category
+        //  --everyting for the switch--  //
 
+        /*
+         * sets is Checked for adapter to use for filtering
+         */
+        @SuppressLint("UseSwitchCompatOrMaterialCode") Switch toDoDoneSwitch =  root.findViewById(R.id.done_todos_switch);
+        toDoDoneSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            switchState = isChecked;
+            Log.i("EventCallbacks", "toDoDoneSwitch changed witch: " + switchState);
+        });
 
         toDoListView.setAdapter(adapter);
         toDoListView.setLayoutManager(new LinearLayoutManager(this.requireActivity()));
@@ -112,7 +106,6 @@ public class ToDoListFragment extends BaseFragment {
     }
 }
 
-//TODO: Layout mit Landscape anpassen
-//TODO: Refresh wenn category ausgewählt wurde
-//TODO: Layout anpassen mit new todo und spinner schöner
-//TODO: eventuell filter für erledigte Todos
+
+//TODO: Refresh wenn category ausgewählt wurde oder switch geändert wurde
+

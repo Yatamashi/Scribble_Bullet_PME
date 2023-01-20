@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * class for ToDos with parameters, setters getters, generates tables
+ * class for ToDos with parameters, setters getters, generates tables, contains toString method
  */
 @Entity
 public class ToDo {

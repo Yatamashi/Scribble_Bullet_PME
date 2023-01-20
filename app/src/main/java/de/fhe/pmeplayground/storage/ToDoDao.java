@@ -55,6 +55,9 @@ public interface ToDoDao {
     @Query("SELECT * FROM ToDo WHERE toDoTitle LIKE :search")
     List<ToDo> getToDosForToDo(String search);
 
+    /**
+     * @return list of all categories grouped by category so the list contains every category on time
+     */
     @Query("SELECT category FROM ToDo group by category")
     List<String> getListOfCategories();
 
