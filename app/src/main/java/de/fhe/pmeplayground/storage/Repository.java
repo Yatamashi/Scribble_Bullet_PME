@@ -3,7 +3,6 @@ package de.fhe.pmeplayground.storage;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 import de.fhe.pmeplayground.model.ToDo;
 
 /**
- * contains methods which return Data or you can insert or update data an change Data.
+ * contains methods which return Data or you can insert or update data and change Data.
  * Uses ToDoDao to work on data
  */
 public class Repository {
@@ -24,7 +23,7 @@ public class Repository {
 
     LiveData<List<ToDo>> allToDos;
 
-    private static Repository INSTANCE;
+    private static volatile Repository INSTANCE;
 
     public static Repository getRepository( Application application )
     {
@@ -35,10 +34,8 @@ public class Repository {
                 }
             }
         }
-
         return INSTANCE;
     }
-
 
     public Repository( Context context )  // was heist Context?
     {
@@ -114,7 +111,6 @@ public class Repository {
         catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-
         return new ToDo("", "", "", "");
     }
 
@@ -181,7 +177,5 @@ public class Repository {
         Log.i("EventCallbacks", "getListOfCategories got called in repository" );
         return this.query( () -> this.toDoDao.getListOfCategories());
     }
-
-
 
 }

@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,7 +24,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     // click on title
     public interface ToDoTitleClickListener
     {
-    void onClick(long toDoId);
+        void onClick(long toDoId);
     }
 
     public interface ToDoCheckBoxClickListener
@@ -119,24 +117,23 @@ public class ToDoListAdapter extends RecyclerView.Adapter<ToDoListAdapter.ToDoVi
     @SuppressLint("NotifyDataSetChanged")
     public void setToDos(List<ToDo> toDoList)
     {
-        List<ToDo> toDoListTemp = toDoList;
+
         if(ToDoListFragment.switchState)
         {
-            toDoListTemp = toDoList.stream().filter(toDo -> !toDo.getToDoDone()).collect(Collectors.toList());
+            toDoList = toDoList.stream().filter(toDo -> !toDo.getToDoDone()).collect(Collectors.toList());
             Log.i("EventCallbacks", "List of not done todos: " + toDoList);
         }
 
         if(Objects.equals(ToDoListFragment.selectedCategory, "alle ToDos"))
         {
-            this.toDoList = toDoListTemp;
+            this.toDoList = toDoList;
         }
         else
         {
-            this.toDoList = toDoListTemp.stream().filter(toDo -> toDo.getCategory().equals(ToDoListFragment.selectedCategory) ).collect(Collectors.toList());
+            this.toDoList = toDoList.stream().filter(toDo -> toDo.getCategory().equals(ToDoListFragment.selectedCategory) ).collect(Collectors.toList());
         }
 
         notifyDataSetChanged();
-        toDoListTemp = toDoList;
     }
 
 }

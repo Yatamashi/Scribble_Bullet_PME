@@ -6,17 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
-
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.view.core.BaseFragment;
 
+
 /**
- * DetailViewFragment is for users to see details of a "dodo", he can see the title, category, description an deadline
+ * DetailViewFragment is for users to see details of a "dodo", they can see the title, category, description an deadline
  */
 public class DetailViewFragment extends BaseFragment {
 
@@ -39,7 +38,6 @@ public class DetailViewFragment extends BaseFragment {
         super.onResume();
         if(getArguments() != null)
         {
-
             final long toDoId = getArguments().getLong("toDoId");
             this.toDoLiveData = viewModel.getToDo(toDoId);
             this.toDoLiveData.observe(requireActivity(), this::updateView);
@@ -58,9 +56,11 @@ public class DetailViewFragment extends BaseFragment {
         Log.i("EventCallbacks", "Stopped observing Detail ToDo");
     }
 
+    /**
+     * parameters are displayed in the textViews
+     */
     private void updateView(ToDo toDo) {
         Log.i("EventCallbacks", "Update Detail View with ToDo: " + toDo);
-
 
         assert getView() != null;
         TextView toDoTitleView = getView().findViewById(R.id.fragment_detail_view_todo_title);
@@ -68,15 +68,11 @@ public class DetailViewFragment extends BaseFragment {
         TextView toDoCategoryView = getView().findViewById(R.id.fragment_detail_view_todo_category);
         TextView toDoDeadlineView = getView().findViewById(R.id.fragment_detail_view_todo_deadline);
 
-
         toDoTitleView.setText(toDo.getToDoTitle());
         toDoDescriptionView.setText(toDo.getDescription());
         toDoCategoryView.setText(toDo.getCategory());
         toDoDeadlineView.setText(toDo.getDeadline());
-
     }
-
-
 
 }
 

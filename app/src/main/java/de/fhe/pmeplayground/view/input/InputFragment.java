@@ -13,12 +13,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
-
 import com.google.android.material.snackbar.Snackbar;
 import de.fhe.pmeplayground.R;
 import de.fhe.pmeplayground.model.ToDo;
@@ -40,6 +38,14 @@ public class InputFragment extends BaseFragment {
     private EditText categoryField;
     private DatePicker dpDeadline;
 
+    /**
+     * Handles click events for the save button.
+     * If a To Do is entered and the save button is clicked, a new To Do object is created
+     * and saved to the database. A message is displayed to the user indicating whether
+     * the save was successful or not. If the save was successful, the user is navigated
+     * to the To Do list screen.
+     * If no To Do is entered, an error message is displayed to the user.
+     */
     private final View.OnClickListener saveButtonClickListener = v -> {
 
         if( v.getId() == R.id.btn_save_todo && !toDoField.getText().toString().equals(""))
@@ -60,7 +66,6 @@ public class InputFragment extends BaseFragment {
             Bundle args = new Bundle();
             NavController nc = NavHostFragment.findNavController(this);
             nc.navigate(R.id.action_navigation_input_to_navigation_todo_list, args);
-
         }
         else
         {
@@ -86,7 +91,7 @@ public class InputFragment extends BaseFragment {
         //  --everything for the spinner--  //
         Log.i( "EventCallbacks", "before getListOfCategories is called in InputFragment");
         List<String> listOfCategories = inputViewModel.getListOfCategories();
-        listOfCategories.add(0,""); // so that in the layout the defaultentry is no category
+        listOfCategories.add(0,""); //  in the layout the default-entry is no category
         Log.i( "EventCallbacks", "after getListOfCategories is called in InputFragment");
         Spinner categorySpinner = root.findViewById(R.id.category_spinner);
 
@@ -94,23 +99,15 @@ public class InputFragment extends BaseFragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
 
-
         /*
-        sets the category textfield with the choosen category
+        sets the category textView with the choosen category
          */
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0)
-                {
-                    categoryField.setText("");
-                }
-
                 String selectedCategory = parent.getItemAtPosition(position).toString();
                 categoryField.setText(selectedCategory);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 categoryField.setText("");
@@ -126,28 +123,23 @@ public class InputFragment extends BaseFragment {
         /*
         calender appears when clicked on selectDate and set the choosen date in EditText deadline
          */
-        btnSelectDeadline.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Log.i("EventCallbacks", "calender appears in InputFragment");
-                dpDeadline.setVisibility(View.VISIBLE);
-                hideKeyboard(getView().getContext(), v );
+        btnSelectDeadline.setOnClickListener(v -> {
+            dpDeadline.setVisibility(View.VISIBLE);
+            hideKeyboard(getView().getContext(), v);
 
-                dpDeadline.init(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(), new DatePicker.OnDateChangedListener() {
-                    @Override
-                    public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            dpDeadline.init(dpDeadline.getYear(), dpDeadline.getMonth(), dpDeadline.getDayOfMonth(),
+                    (view, year, monthOfYear, dayOfMonth) -> {
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(year, monthOfYear, dayOfMonth);
                         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-                        String date = format.format(calendar.getTime());
-                        Log.i("EventCallbacks", "Angegebenes Datum: " + date);
-                        deadlineField.setText(date);
+                        try {
+                            String date = format.format(calendar.getTime());
+                            deadlineField.setText(date);
+                        } catch (Exception e) {
+                            Log.e("EventCallbacks", "Failed to parse date format", e);
+                        }
                         dpDeadline.setVisibility(View.GONE);
-                    }
-                });
-            }
+                    });
         });
 
         Button saveBtn = root.findViewById(R.id.btn_save_todo);

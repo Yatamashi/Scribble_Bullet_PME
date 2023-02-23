@@ -2,12 +2,10 @@ package de.fhe.pmeplayground.storage;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 import java.util.List;
-
 import de.fhe.pmeplayground.model.ToDo;
 
 /**
@@ -19,20 +17,8 @@ public interface ToDoDao {
     @Insert
     long insert(ToDo toDo);
 
-    @Insert
-    List<Long> insert(ToDo... toDos);
-
     @Update
     void update(ToDo... toDos);
-
-    @Delete
-    void delete(ToDo... toDos);
-
-    @Query("DELETE FROM ToDo")
-    void deleteAll();
-
-    @Query("SELECT count(*) FROM ToDo")
-    int count();
 
     @Query("SELECT * from ToDo")
     List<ToDo> getToDos();
@@ -42,9 +28,6 @@ public interface ToDoDao {
 
     @Query("SELECT * FROM ToDo")
     LiveData<List<ToDo>> getToDosLiveDataList();
-
-    @Query("SELECT * FROM ToDo")
-    LiveData<ToDo> getToDosLiveDataNotList();
 
     @Query("SELECT * from ToDo ORDER BY toDoTitle ASC")
     List<ToDo> getToDosSortedByToDo();
@@ -56,7 +39,7 @@ public interface ToDoDao {
     List<ToDo> getToDosForToDo(String search);
 
     /**
-     * @return list of all categories grouped by category so the list contains every category on time
+     * @return list of all categories grouped by category, the list contains every category on time
      */
     @Query("SELECT category FROM ToDo group by category")
     List<String> getListOfCategories();

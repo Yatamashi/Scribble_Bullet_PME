@@ -1,15 +1,11 @@
 package de.fhe.pmeplayground.view.detailview;
 
 import android.app.Application;
-
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.github.javafaker.App;
-
 import de.fhe.pmeplayground.model.ToDo;
 import de.fhe.pmeplayground.storage.Repository;
+
 
 /**
  * Viewmodel separates the database from fragment

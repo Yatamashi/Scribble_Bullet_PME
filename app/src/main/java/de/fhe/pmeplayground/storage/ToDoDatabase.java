@@ -2,24 +2,18 @@ package de.fhe.pmeplayground.storage;
 
 import android.content.Context;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
-
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-
-import com.github.javafaker.Faker;
-
 import java.util.Collections;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import de.fhe.pmeplayground.model.ToDo;
+
 
 /**
  * Database for the application.
@@ -34,7 +28,6 @@ public abstract class ToDoDatabase extends RoomDatabase {
          DAO reference, will be filled by Android
      */
     public abstract ToDoDao toDoDao();
-
 
     /*
       Executor service to perform database operations asynchronous and independent from UI thread
@@ -88,10 +81,9 @@ public abstract class ToDoDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-
     /*
     Create DB Callback
-    Used to add some initial data
+    Used to add some initial data for testing and to try out functionalities
     */
     private static final RoomDatabase.Callback createCallback = new RoomDatabase.Callback() {
         @Override
@@ -103,14 +95,12 @@ public abstract class ToDoDatabase extends RoomDatabase {
             execute(() -> {
                 ToDoDao dao = INSTANCE.toDoDao();
 
-
                 ToDo toDo = new ToDo("Abwasch", "mit Seife", "Wichtig", "05.07.2023");
                 toDo.setCreated( System.currentTimeMillis() );
                 toDo.setModified( toDo.getCreated() );
                 toDo.setVersion( 1 );
                 toDo.setToDoDone(true);
                 dao.insert(toDo);
-
 
                 ToDo toDo1 = new ToDo("Putzen", "das Haus", "Haushalt", "05.07.2023");
                 toDo1.setCreated( System.currentTimeMillis() );
@@ -123,6 +113,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo2.setCreated( System.currentTimeMillis() );
                 toDo2.setModified( toDo2.getCreated() );
                 toDo2.setVersion( 1 );
+                toDo2.setToDoDone(true);
                 dao.insert(toDo2);
 
                 ToDo toDo3 = new ToDo("Auto waschen", "im Waschsalon", "Haushalt", "05.07.2023");
@@ -147,6 +138,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo6.setCreated( System.currentTimeMillis() );
                 toDo6.setModified( toDo6.getCreated() );
                 toDo6.setVersion( 1 );
+                toDo6.setToDoDone(true);
                 dao.insert(toDo6);
 
                 ToDo toDo7 = new ToDo("Kleidung für die Arbeit aussuchen", "keine Jeans", "Arbeit", "05.07.2023");
@@ -177,6 +169,7 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo11.setCreated( System.currentTimeMillis() );
                 toDo11.setModified( toDo11.getCreated() );
                 toDo11.setVersion( 1 );
+                toDo11.setToDoDone(true);
                 dao.insert(toDo11);
 
                 ToDo toDo12 = new ToDo("Hausaufgaben machen", "Mathe und Deutsch", "Schule", "25.02.2023");
@@ -185,12 +178,86 @@ public abstract class ToDoDatabase extends RoomDatabase {
                 toDo12.setVersion( 1 );
                 dao.insert(toDo12);
 
+                ToDo toDo13 = new ToDo("Gartenarbeit", "Unkraut jäten und Rasen mähen", "Haushalt", "27.02.2023");
+                toDo13.setCreated(System.currentTimeMillis());
+                toDo13.setModified(toDo13.getCreated());
+                toDo13.setVersion(1);
+                dao.insert(toDo13);
 
+                ToDo toDo14 = new ToDo("Staubsaugen und Wischen", "Wohnzimmer und Schlafzimmer", "Haushalt", "28.02.2023");
+                toDo14.setCreated(System.currentTimeMillis());
+                toDo14.setModified(toDo14.getCreated());
+                toDo14.setVersion(1);
+                dao.insert(toDo14);
+
+                ToDo toDo15 = new ToDo("Meeting vorbereiten", "Präsentation und Handouts", "Arbeit", "07.03.2023");
+                toDo15.setCreated(System.currentTimeMillis());
+                toDo15.setModified(toDo15.getCreated());
+                toDo15.setVersion(1);
+                dao.insert(toDo15);
+
+                ToDo toDo16 = new ToDo("Kundentermine", "Anrufe und E-Mails", "Arbeit", "08.03.2023");
+                toDo16.setCreated(System.currentTimeMillis());
+                toDo16.setModified(toDo16.getCreated());
+                toDo16.setVersion(1);
+                dao.insert(toDo16);
+
+                ToDo toDo17 = new ToDo("Fahrradreifen flicken", "Vorder- und Hinterreifen", "Wichtig", "10.03.2023");
+                toDo17.setCreated(System.currentTimeMillis());
+                toDo17.setModified(toDo17.getCreated());
+                toDo17.setVersion(1);
+                dao.insert(toDo17);
+
+                ToDo toDo18 = new ToDo("Steuererklärung", "Papierkram sortieren und Formulare ausfüllen", "Termine", "12.03.2023");
+                toDo18.setCreated(System.currentTimeMillis());
+                toDo18.setModified(toDo18.getCreated());
+                toDo18.setVersion(1);
+                dao.insert(toDo18);
+
+                ToDo toDo19 = new ToDo("Rezept ausprobieren", "Pasta mit Pilz-Rahmsauce", "Haushalt", "15.03.2023");
+                toDo19.setCreated(System.currentTimeMillis());
+                toDo19.setModified(toDo19.getCreated());
+                toDo19.setVersion(1);
+                dao.insert(toDo19);
+
+                ToDo toDo20 = new ToDo("Bücher ausleihen", "Thriller und Krimis", "Freizeit", "20.03.2023");
+                toDo20.setCreated(System.currentTimeMillis());
+                toDo20.setModified(toDo20.getCreated());
+                toDo20.setVersion(1);
+                dao.insert(toDo20);
+
+                ToDo toDo21 = new ToDo("Besprechung mit dem Chef", "Projektstatus besprechen", "Arbeit", "03.03.2023");
+                toDo21.setCreated(System.currentTimeMillis());
+                toDo21.setModified(toDo21.getCreated());
+                toDo21.setVersion(1);
+                dao.insert(toDo21);
+
+                ToDo toDo22 = new ToDo("Kundenpräsentation vorbereiten", "Folien erstellen", "Arbeit", "06.03.2023");
+                toDo22.setCreated(System.currentTimeMillis());
+                toDo22.setModified(toDo22.getCreated());
+                toDo22.setVersion(1);
+                dao.insert(toDo22);
+
+                ToDo toDo23 = new ToDo("Teammeeting organisieren", "Termin und Ort festlegen", "Arbeit", "09.03.2023");
+                toDo23.setCreated(System.currentTimeMillis());
+                toDo23.setModified(toDo23.getCreated());
+                toDo23.setVersion(1);
+                dao.insert(toDo23);
+
+                ToDo toDo24 = new ToDo("Dokumentation aktualisieren", "Neue Funktionen einfügen", "Arbeit", "12.03.2023");
+                toDo24.setCreated(System.currentTimeMillis());
+                toDo24.setModified(toDo24.getCreated());
+                toDo24.setVersion(1);
+                dao.insert(toDo24);
+
+                ToDo toDo25 = new ToDo("Praktikum bewerben", "Bewerbungsunterlagen erstellen", "Arbeit", "15.03.2023");
+                toDo25.setCreated(System.currentTimeMillis());
+                toDo25.setModified(toDo25.getCreated());
+                toDo25.setVersion(1);
+                dao.insert(toDo25);
             });
         }
     };
-
-
 }
 
 

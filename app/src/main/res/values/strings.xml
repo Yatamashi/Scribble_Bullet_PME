@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Scribble Bullet</string>
-    <string name="image_descr_startup_icon">Startup Icon</string>
     <string name="text_todo">ToDo</string>
     <string name="text_description">Description</string>
     <string name="text_btn_save">Save</string>
@@ -12,4 +11,5 @@
     <string name="text_deadline">Deadline</string>
     <string name="select_deadline">Select Deadline</string>
     <string name="new_todo">+</string>
+    <string name="todo">TODO</string>
 </resources>

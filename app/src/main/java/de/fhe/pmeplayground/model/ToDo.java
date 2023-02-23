@@ -70,10 +70,6 @@ public class ToDo {
         return description;
     }
 
-    public void setDescription(@NonNull String description) {
-        this.description = description;
-    }
-
     @NonNull
     public String getCategory()
     {
@@ -81,20 +77,9 @@ public class ToDo {
     }
 
     @NonNull
-    public void setCategory(@NonNull String category)
-    {
-        this.category = category;
-    }
-
-    @NonNull
     public String getToDoTitle() {
         return toDoTitle;
     }
-
-    public void setToDoTitle(@NonNull String toDoTitle) {
-        this.toDoTitle = toDoTitle;
-    }
-
 
     public long getCreated() {
         return created;
@@ -115,16 +100,13 @@ public class ToDo {
     public int getVersion() {
         return version;
     }
+
     public void setVersion(int version) {
         this.version = version;
     }
 
     public String getDeadline() {
         return deadline;
-    }
-
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
     }
 
     public boolean getToDoDone() {
