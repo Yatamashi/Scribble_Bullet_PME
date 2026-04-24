@@ -35,3 +35,8 @@ If the todo is done you can check the box.
 At least my App is very inspired from the project in lecture and it is simple and minimalist.
 Nevertheless, i had many challenges and i learned a lot.
 I am very grateful for the generous help.
+
+### Mini Webseite & Hosting
+- Eine kleine statische Webseite liegt unter `docs/index.html`.
+- Das Hosting läuft über GitHub Pages mit dem Workflow `.github/workflows/deploy-pages.yml`.
+- Nach einem Push auf den `main`-Branch wird die Seite automatisch deployed.
